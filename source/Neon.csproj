@@ -7,8 +7,8 @@
     <ProjectGuid>{DEFEF902-318F-4568-AEDB-4F681A2D1D9B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Theme</RootNamespace>
-    <AssemblyName>Theme</AssemblyName>
+    <RootNamespace>Neon</RootNamespace>
+    <AssemblyName>Neon</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
