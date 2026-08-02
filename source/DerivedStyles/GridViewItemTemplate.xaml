@@ -473,7 +473,45 @@
 
     <Style x:Key="DuplicateHider_IconContentControlStyle2"
            BasedOn="{StaticResource DuplicateHider_IconContentControlStyle1}"
-           TargetType="ContentControl" />
+           TargetType="ContentControl">
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Grid Margin="1">
+                        <Border x:Name="IconBackground"
+                                Background="#d3d8e0"
+                                CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}"
+                                Opacity="0.14" />
+                        <Image x:Name="Icon"
+                               Source="{Binding Icon}"
+                               Margin="5"
+                               Opacity="0.5"
+                               RenderOptions.BitmapScalingMode="Fant" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="IconBackground" Property="Opacity" Value="0.30" />
+                            <Setter TargetName="Icon" Property="Opacity" Value="0.85" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                            <Setter TargetName="IconBackground" Property="Background" Value="{DynamicResource GridItemBackgroundBrush}" />
+                            <Setter TargetName="IconBackground" Property="Opacity" Value="0.5" />
+                            <Setter TargetName="Icon" Property="Opacity" Value="1.0" />
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsCurrent}" Value="True" />
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="IconBackground" Property="Opacity" Value="0.65" />
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="Button" x:Key="ButtonPlay" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />

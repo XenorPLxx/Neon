@@ -182,7 +182,7 @@
                                                 </ContentControl.Resources>
                                             </ContentControl>
                                             <ContentControl x:Name="DuplicateHider_SourceSelector2"
-                                                            MaxHeight="25"
+                                                            Height="32"
                                                             Margin="0,0,10,0"
                                                             VerticalAlignment="Bottom"
                                                             RenderOptions.BitmapScalingMode="Fant" />
