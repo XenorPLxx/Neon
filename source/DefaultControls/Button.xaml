@@ -447,6 +447,51 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="DetailsSectionHeaderToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="#d3d8e0" />
+        <Setter Property="Foreground" Value="#ffffff" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ToolTip" Value="Show or hide this section" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Border x:Name="HeaderBackground" Background="{TemplateBinding Background}" Opacity="0" />
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="0,0,34,0" />
+                        <Border x:Name="ChevronBackground" HorizontalAlignment="Right" Width="26" Height="26"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}" Opacity="0.14" />
+                        <Grid x:Name="Chevron" HorizontalAlignment="Right" Width="26" Height="26" Opacity="0.5">
+                            <Path x:Name="ChevronDown" Data="M 2,2 L 10,10 L 18,2" Width="16" Height="8"
+                                  Stretch="Uniform" Stroke="{TemplateBinding Foreground}" StrokeThickness="2.5"
+                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+                            <Path x:Name="ChevronUp" Data="M 2,10 L 10,2 L 18,10" Width="16" Height="8"
+                                  Stretch="Uniform" Stroke="{TemplateBinding Foreground}" StrokeThickness="2.5"
+                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                  Visibility="Collapsed" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="ChevronDown" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="ChevronUp" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="HeaderBackground" Property="Opacity" Value="0.08" />
+                            <Setter TargetName="ChevronBackground" Property="Opacity" Value="0.30" />
+                            <Setter TargetName="Chevron" Property="Opacity" Value="0.85" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <Style TargetType="{x:Type Button}" x:Key="PlayersCountButtonStyle">
         <Setter Property="Background" Value="{DynamicResource DetailsViewBannerPanelBackgroundBrush}"/>
