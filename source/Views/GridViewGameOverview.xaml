@@ -752,16 +752,13 @@
 
                                                 <StackPanel Name="GameActivityFeed" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=GameActivity, Path=HasData, FallbackValue=False}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewGameActivityPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCGameActivityTitle}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewGameActivityPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewGameActivityPanelToggleButton" MinHeight="34"
+                                                                  Margin="0,0,0,10" Focusable="False"
+                                                                  Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCGameActivityTitle}"
+                                                               Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewGameActivityPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
@@ -791,15 +788,11 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="HltbPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowHltbPanelDefault}" />
-                                                        <ToggleButton Content="HowLongToBeat" Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=HltbPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="HltbPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowHltbPanelDefault}">
+                                                        <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid>
                                                         <Grid.Style>
                                                             <Style TargetType="Grid">
@@ -842,16 +835,11 @@
                                                 </StackPanel>                                                
 
                                                 <StackPanel Name="PART_ElemNotes" Margin="0,0,0,10">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewNotesPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCNotesLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewNotesPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewNotesPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCNotesLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewNotesPanelToggleButton, Path=IsChecked}">
                                                         <StackPanel>
@@ -951,16 +939,11 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewVideoPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCExtra_Metadata_Loader_VideoLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewVideoPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewVideoPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCExtra_Metadata_Loader_VideoLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewVideoPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
@@ -971,16 +954,11 @@
                                               
                                                 <StackPanel Name="ScreenshotsVisualizerPanel" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=ScreenshotsVisualizer, Path=HasData, FallbackValue=False}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewScreenshotsVisualizerPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCSsvTitle}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewScreenshotsVisualizerPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewScreenshotsVisualizerPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCSsvTitle}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewScreenshotsVisualizerPanelToggleButton, Path=IsChecked}">
                                                         <Border Background="{DynamicResource SectionContainerBackgroundBrush}" />
@@ -999,16 +977,11 @@
 
                                                 <StackPanel Name="ReviewsPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewReviewsPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCReview_Viewer_ReviewsLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewReviewsPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewReviewsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCReview_Viewer_ReviewsLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewReviewsPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
@@ -1021,16 +994,11 @@
 
                                                 <StackPanel Name="NewsFeed" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewNewsPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewNewsPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewNewsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewNewsPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
@@ -1043,15 +1011,11 @@
 
                                                 <StackPanel Name="VndbPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=VNDBNexus, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewVndbPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="VNDB" Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewVndbPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewVndbPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="VNDB" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewVndbPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
@@ -1064,15 +1028,11 @@
 
                                                 <StackPanel Name="CheckDlcPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewCheckDlcPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="DLC" Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewCheckDlcPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewCheckDlcPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="DLC" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewCheckDlcPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
@@ -1110,16 +1070,11 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewGameRelationsPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCGameRelations_RelatedGamesLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewGameRelationsPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewGameRelationsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCGameRelations_RelatedGamesLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewGameRelationsPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
@@ -1149,16 +1104,11 @@
 
                                                 <StackPanel Name="SteamScreenshots" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=SteamScreenshots, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewSteamScreenshotsPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOC_SteamScreenshots_SteamScreenshotsLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewSteamScreenshotsPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewSteamScreenshotsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOC_SteamScreenshots_SteamScreenshotsLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewSteamScreenshotsPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
@@ -1171,16 +1121,11 @@
 
                                                 <StackPanel Name="WebExplorerPanel" Margin="0,0,0,15"
                                                             Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
-                                                    <DockPanel LastChildFill="True">
-                                                        <ToggleButton x:Name="GridViewWebExplorerPanelToggleButton" DockPanel.Dock="Right"
-                                                                      Width="26" Height="26" Margin="0,-4,0,0"
-                                                                      Focusable="False"
-                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
-                                                                      IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}" />
-                                                        <ToggleButton Content="{DynamicResource LOCWebExplorer_WebLabel}"
-                                                                      Style="{DynamicResource DetailsSectionLabelToggleButton}"
-                                                                      IsChecked="{Binding ElementName=GridViewWebExplorerPanelToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                                                    </DockPanel>
+                                                    <ToggleButton x:Name="GridViewWebExplorerPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCWebExplorer_WebLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=GridViewWebExplorerPanelToggleButton, Path=IsChecked}"
                                                           Background="{DynamicResource SectionContainerBackgroundBrush}">
