@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a bug to help us improve
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Check for existing issues first**
+        Before reporting a bug, please use the issue search to check if the problem has already been reported. This helps avoid duplicates and speeds up resolution.
+
+        **Instructions**
+        Change the placeholder title automatically filled in the template and provide the necessary details in the sections below. Fields marked with a * are required.
+  - type: textarea
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of the bug and what behavior you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: If the issue isn’t obvious from the description, please list the steps to reproduce the behavior. This is especially important for intermittent issues.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Extensions Log
+      description: |
+        If the issue caused Playnite to crash or is related to a theme error, please attach the **Extensions.log** file. 
+
+        - For the portable version of Playnite, this file is located in the Playnite installation directory.
+        - For the installed version, you can find it in **%AppData%\Playnite** (type this in the Explorer address bar).
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: Add screenshots or videos to help illustrate the issue, if applicable. These are particularly useful for UI or visual bugs.
+    validations:
+      required: false

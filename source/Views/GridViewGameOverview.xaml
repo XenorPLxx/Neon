@@ -165,11 +165,33 @@
                                             <ContentControl x:Name="CheckLocalizations_PluginButton" Height="40" VerticalAlignment="Bottom" Margin="0,0,0,0" DockPanel.Dock="Left" Opacity="0.60" />
                                             <ContentControl x:Name="LibraryManagement_PluginFeaturesIconList" Height="30" Margin="20,0,0,0"
                                                 VerticalAlignment="Bottom" DockPanel.Dock="Right" Opacity="0.7"/>
+                                            <ContentControl x:Name="GogSecondClassWatcher_SecondClassWatcherControl"
+                                                            DockPanel.Dock="Right"
+                                                            VerticalAlignment="Bottom"
+                                                            Visibility="{PluginSettings Plugin=GogSecondClassWatcher, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            Margin="0,0,10,0"/>
+                                            <ContentControl x:Name="DuplicateHider_SourceSelector"
+                                                            DockPanel.Dock="Right"
+                                                            VerticalAlignment="Bottom"
+                                                            Visibility="{PluginSettings Plugin=DuplicateHider, Path=EnableUiIntegration, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            Margin="0,0,10,0" />
                                         </DockPanel>
                                         <DockPanel DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20,0,30,8" >
+                                            <ContentControl x:Name="PlayState_GameStateSwitchControl" Margin="0,0,10,0"
+                                                            Visibility="{PluginSettings Plugin=PlayState, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <ContentControl.Resources>
+                                                    <Style TargetType="Button" BasedOn="{StaticResource DetailsSemiTransparentButton}">
+                                                        <Setter Property="Width" Value="32" />
+                                                        <Setter Property="Height" Value="32" />
+                                                    </Style>
+                                                </ContentControl.Resources>
+                                            </ContentControl>
                                             <Button x:Name="PART_ButtonEditGame" Focusable="False" Height="32" Width="32"
                                                             FontFamily="{DynamicResource FontIcoFont}" Style="{DynamicResource GameEditButton}" Margin="0,0,10,0"/>
                                             <ToggleButton Name="PanelToggleButton" Focusable="False" Height="32" Width="32" Style="{DynamicResource PannelToggleButton}" IsChecked="False"/>
+                                            <ToggleButton Name="GameFavoriteToggleButton" Margin="10,0,0,0" Focusable="False" Height="32" Width="32" Style="{DynamicResource PannelFavoriteToggleButton}"
+                                                          Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin}"
+                                                          IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Favorite, Mode=TwoWay, FallbackValue={StaticResource False}}"/>
                                         </DockPanel>
                                     </Grid>
                                     <Grid Name="DetailsHeader">
@@ -658,7 +680,7 @@
                                                                                 Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualWidth}"/>
                                                                 <ContentControl x:Name="HowLongToBeat_PluginButton" HorizontalAlignment="Right" Margin="0,0,0,10"/>
 
-                                                                <GridEx Name="HltbDataGrid" ColumnCount="2" AutoLayoutColumns="2" RowCount="6" Tag="{DynamicResource DetailsViewShowHltbDataGrid}">
+                                                                <GridEx Name="HltbDataGrid" ColumnCount="2" AutoLayoutColumns="2" RowCount="6" Tag="{DynamicResource GridViewShowHltbDataGrid}">
                                                                     <GridEx.Style>
                                                                         <Style>
                                                                             <Setter Property="Control.Visibility" Value="Collapsed" />
@@ -729,6 +751,9 @@
                                                      AcceptsReturn="True" TextWrapping="Wrap"
                                                      Margin="20,0,20,0" Padding="10" VerticalAlignment="Center"/>
                                                     </Grid>
+                                                    <ContentControl x:Name="PlayNotes_NotesViewerControl"
+                                                                    Visibility="{PluginSettings Plugin=PlayNotes, Path=IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                                                    Margin="0,0,0,10" />
                                                 </StackPanel>
 
                                                 <!--<StackPanel Name="PART_ElemGenres">
@@ -839,12 +864,121 @@
                                                 </StackPanel>
 
                                                 <StackPanel Name="ReviewsPanel" Margin="0,0,0,15"
-                                                            Visibility="{PluginStatus Plugin=Review_Viewer_ca24e37a-76d9-49bf-89ab-d3cba4a54bd1, Status=Installed}">
+                                                            Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Label Content="{DynamicResource LOCReview_Viewer_ReviewsLabel}" Style="{DynamicResource FeedSectionLabel}"/>
                                                     <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <Border Padding="10">
                                                             <ContentControl x:Name="ReviewViewer_ReviewsControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="NewsFeed" Margin="0,0,0,15"
+                                                            Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <Label Content="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="NewsViewer_NewsViewerControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="VndbPanel" Margin="0,0,0,15"
+                                                            Visibility="{PluginSettings Plugin=VNDBNexus, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <Label Content="VNDB" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="VNDBNexus_VndbVisualNovelViewControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="CheckDlcPanel" Margin="0,0,0,15"
+                                                            Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <Label Content="DLC" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <StackPanel>
+                                                                <ContentControl x:Name="CheckDlc_PluginButton" MinHeight="20" MinWidth="120"
+                                                                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10"
+                                                                                Visibility="{PluginSettings Plugin=CheckDlc, Path=EnableIntegrationButton, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                                <ContentControl x:Name="CheckDlc_PluginListDlcAll" Height="700" Margin="0,0,0,10"/>
+                                                                <ContentControl x:Name="CheckDlc_PluginListDlcOwned" Height="700" Margin="0,0,0,10"/>
+                                                                <ContentControl x:Name="CheckDlc_PluginListDlcNotOwned" Height="700" />
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="GameRelationsPanel" Margin="0,0,0,15">
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SimilarGamesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SameSeriesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SameDeveloperControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SamePublisherControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <Label Content="{DynamicResource LOCGameRelations_RelatedGamesLabel}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <StackPanel>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SimilarGamesLabel}" IsExpanded="True" Margin="0,0,0,5"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SimilarGamesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SimilarGamesControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SameSeriesLabel}" IsExpanded="True" Margin="0,0,0,5"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SameSeriesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SameSeriesControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SameDeveloperLabel}" IsExpanded="True" Margin="0,0,0,5"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SameDeveloperControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SameDeveloperControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SamePublisherLabel}" IsExpanded="True"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SamePublisherControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SamePublisherControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="SteamScreenshots" Margin="0,0,0,15"
+                                                            Visibility="{PluginSettings Plugin=SteamScreenshots, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <Label Content="{DynamicResource LOC_SteamScreenshots_SteamScreenshotsLabel}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="SteamScreenshots_SteamScreenshotsViewControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="WebExplorerPanel" Margin="0,0,0,15"
+                                                            Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
+                                                    <Label Content="{DynamicResource LOCWebExplorer_WebLabel}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="WebExplorer_BrowserHostViewControl"
+                                                                            Height="{DynamicResource WebExplorerControlHeight}" />
                                                         </Border>
                                                     </Grid>
                                                 </StackPanel>

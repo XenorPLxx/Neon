@@ -7,7 +7,7 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
+        <Setter Property="Background" Value="#3d4450" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
@@ -17,16 +17,40 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                            
-                            CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    <Grid>
+                        <Border x:Name="ShadowBorder" Visibility="Collapsed"
+                                Background="{Binding ElementName=Border, Path=Background}"
+                                CornerRadius="{Binding ElementName=Border, Path=CornerRadius}"
+                                BorderThickness="{Binding ElementName=Border, Path=BorderThickness}"
+                                BorderBrush="{Binding ElementName=Border, Path=BorderBrush}" />
+                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                            
+                                CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
-                    </Border>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="ShadowBorder" />
+                            <Setter Property="Effect" TargetName="ShadowBorder">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#3d4450" Direction="270" ShadowDepth="12"
+                                                      RenderingBias="Performance"
+                                                      BlurRadius="18" Opacity="0.25" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="ShadowBorder" />
+                            <Setter Property="Effect" TargetName="ShadowBorder">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#3d4450" Direction="270" ShadowDepth="12"
+                                                      RenderingBias="Performance"
+                                                      BlurRadius="18" Opacity="0.25" />
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -34,14 +58,17 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource ButtonIsMouseOverBackgroundBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                <Setter Property="Background" Value="#67707b" />
+                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#67707b" />
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
-    
-    <Style x:Key="GameEditButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+
+    <Style x:Key="DetailsSemiTransparentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="#d3d8e0" />
         <Setter Property="Foreground" Value="#ffffff" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -57,23 +84,9 @@
                             CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.14" />
                         <Border Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" >
-                                <ContentPresenter.Content>
-                                    <Viewbox Stretch="Uniform">
-                                        <Canvas Name="Layer_1" Width="256" Height="256" Canvas.Left="0" Canvas.Top="0">
-                                            <Canvas.RenderTransform>
-                                                <TranslateTransform X="305.5" Y="-396.5"/>
-                                            </Canvas.RenderTransform>
-                                            <Path Fill="{TemplateBinding Foreground}" Opacity="0.5" Name="Path">
-                                                <Path.Data>
-                                                    <PathGeometry Figures="M-232.755 589.942l3.103 2.408c5.78 4.492 11.973 8.18 18.409 10.959l3.581 1.547l2.276 33.783 c0.089 1.33 1.385 2.54 2.715 2.54h48.62c1.355 0 2.745-1.273 2.852-2.621l2.74-33.284l3.602-1.496 c6.406-2.656 12.646-6.262 18.554-10.707l3.137-2.366l30.578 15.009c1.155 0.571 2.924 0.017 3.563-1.087l24.303-42.1 c0.674-1.173 0.265-3.014-0.852-3.785l-27.872-19.309l0.469-3.832c0.495-4.032 0.725-7.395 0.725-10.57 c0-3.129-0.227-6.5-0.687-10.307l-0.469-3.896l28.699-19.253c1.112-0.741 1.509-2.473 0.84-3.627l-24.3-42.104 c-0.657-1.139-2.502-1.727-3.7-1.155l-31.208 14.748l-3.091-2.341c-5.571-4.224-11.466-7.688-17.522-10.306l-3.58-1.548 l-2.34-34.887c-0.089-1.33-1.381-2.536-2.715-2.536h-48.617c-1.355 0-2.74 1.274-2.851 2.626l-2.834 34.371l-3.593 1.501 c-6.082 2.535-12.028 5.924-17.667 10.071l-3.124 2.302l-31.392-15.413c-1.168-0.575-2.924-0.025-3.559 1.074l-24.309 42.107 c-0.678 1.172-0.264 3.014 0.848 3.781l28.068 19.444l-0.524 3.883c-0.592 4.378-0.865 8.018-0.865 11.462 c0 2.988 0.179 6.065 0.55 9.403l0.431 3.853l-28.528 19.125c-1.108 0.742-1.509 2.468-0.84 3.632l24.308 42.1 c0.656 1.142 2.489 1.726 3.7 1.154L-232.755 589.942z M-177.498 560.051c-19.311 0-35.02-15.709-35.02-35.02 s15.709-35.02 35.02-35.02s35.02 15.709 35.02 35.02S-158.188 560.051-177.498 560.051z" FillRule="NonZero"/>
-                                                </Path.Data>
-                                            </Path>
-                                        </Canvas>
-                                    </Viewbox>
-                                </ContentPresenter.Content>
-                            </ContentPresenter>
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Opacity="0.5" Name="ContentPresenter"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -89,7 +102,7 @@
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetName="Path"
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenter"
                                                 Storyboard.TargetProperty="Opacity"
                                                 To="0.85"
                                                 Duration="0:0:0.2" >
@@ -111,7 +124,7 @@
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetName="Path"
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenter"
                                                 Storyboard.TargetProperty="Opacity"
                                                 To="0.50"
                                                 Duration="0:0:0.2" >
@@ -129,6 +142,112 @@
         </Setter>
     </Style>
 
+    <Style x:Key="DetailsViewEditButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="#d3d8e0" />
+        <Setter Property="Foreground" Value="#ffffff" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border x:Name="BorderBk" BorderThickness="0" Background="{TemplateBinding Background}"                            
+                                CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}" Opacity="0.14" />
+                        <Border Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Opacity="0.5" Name="ContentPresenter"
+                                              Margin="{TemplateBinding Padding}">
+                            <Viewbox Stretch="Uniform">
+                                <Canvas Width="256" Height="256" Canvas.Left="0" Canvas.Top="0">
+                                    <Canvas.RenderTransform>
+                                        <TranslateTransform X="305.5" Y="-396.5"/>
+                                    </Canvas.RenderTransform>
+                                    <Path Fill="#ffffff">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M-232.755 589.942l3.103 2.408c5.78 4.492 11.973 8.18 18.409 10.959l3.581 1.547l2.276 33.783 c0.089 1.33 1.385 2.54 2.715 2.54h48.62c1.355 0 2.745-1.273 2.852-2.621l2.74-33.284l3.602-1.496 c6.406-2.656 12.646-6.262 18.554-10.707l3.137-2.366l30.578 15.009c1.155 0.571 2.924 0.017 3.563-1.087l24.303-42.1 c0.674-1.173 0.265-3.014-0.852-3.785l-27.872-19.309l0.469-3.832c0.495-4.032 0.725-7.395 0.725-10.57 c0-3.129-0.227-6.5-0.687-10.307l-0.469-3.896l28.699-19.253c1.112-0.741 1.509-2.473 0.84-3.627l-24.3-42.104 c-0.657-1.139-2.502-1.727-3.7-1.155l-31.208 14.748l-3.091-2.341c-5.571-4.224-11.466-7.688-17.522-10.306l-3.58-1.548 l-2.34-34.887c-0.089-1.33-1.381-2.536-2.715-2.536h-48.617c-1.355 0-2.74 1.274-2.851 2.626l-2.834 34.371l-3.593 1.501 c-6.082 2.535-12.028 5.924-17.667 10.071l-3.124 2.302l-31.392-15.413c-1.168-0.575-2.924-0.025-3.559 1.074l-24.309 42.107 c-0.678 1.172-0.264 3.014 0.848 3.781l28.068 19.444l-0.524 3.883c-0.592 4.378-0.865 8.018-0.865 11.462 c0 2.988 0.179 6.065 0.55 9.403l0.431 3.853l-28.528 19.125c-1.108 0.742-1.509 2.468-0.84 3.632l24.308 42.1 c0.656 1.142 2.489 1.726 3.7 1.154L-232.755 589.942z M-177.498 560.051c-19.311 0-35.02-15.709-35.02-35.02 s15.709-35.02 35.02-35.02s35.02 15.709 35.02 35.02S-158.188 560.051-177.498 560.051z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BorderBk"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.30"
+                                                Duration="0:0:0.2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.85"
+                                                Duration="0:0:0.2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BorderBk"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.14"
+                                                Duration="0:0:0.2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.50"
+                                                Duration="0:0:0.2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style x:Key="DetailsViewEditButton" TargetType="{x:Type Button}" BasedOn="{StaticResource DetailsSemiTransparentButton}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Viewbox Stretch="Uniform">
+                    <Canvas Width="256" Height="256" Canvas.Left="0" Canvas.Top="0">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="305.5" Y="-396.5"/>
+                        </Canvas.RenderTransform>
+                        <Path Fill="#ffffff">
+                            <Path.Data>
+                                <PathGeometry Figures="M-232.755 589.942l3.103 2.408c5.78 4.492 11.973 8.18 18.409 10.959l3.581 1.547l2.276 33.783 c0.089 1.33 1.385 2.54 2.715 2.54h48.62c1.355 0 2.745-1.273 2.852-2.621l2.74-33.284l3.602-1.496 c6.406-2.656 12.646-6.262 18.554-10.707l3.137-2.366l30.578 15.009c1.155 0.571 2.924 0.017 3.563-1.087l24.303-42.1 c0.674-1.173 0.265-3.014-0.852-3.785l-27.872-19.309l0.469-3.832c0.495-4.032 0.725-7.395 0.725-10.57 c0-3.129-0.227-6.5-0.687-10.307l-0.469-3.896l28.699-19.253c1.112-0.741 1.509-2.473 0.84-3.627l-24.3-42.104 c-0.657-1.139-2.502-1.727-3.7-1.155l-31.208 14.748l-3.091-2.341c-5.571-4.224-11.466-7.688-17.522-10.306l-3.58-1.548 l-2.34-34.887c-0.089-1.33-1.381-2.536-2.715-2.536h-48.617c-1.355 0-2.74 1.274-2.851 2.626l-2.834 34.371l-3.593 1.501 c-6.082 2.535-12.028 5.924-17.667 10.071l-3.124 2.302l-31.392-15.413c-1.168-0.575-2.924-0.025-3.559 1.074l-24.309 42.107 c-0.678 1.172-0.264 3.014 0.848 3.781l28.068 19.444l-0.524 3.883c-0.592 4.378-0.865 8.018-0.865 11.462 c0 2.988 0.179 6.065 0.55 9.403l0.431 3.853l-28.528 19.125c-1.108 0.742-1.509 2.468-0.84 3.632l24.308 42.1 c0.656 1.142 2.489 1.726 3.7 1.154L-232.755 589.942z M-177.498 560.051c-19.311 0-35.02-15.709-35.02-35.02 s15.709-35.02 35.02-35.02s35.02 15.709 35.02 35.02S-158.188 560.051-177.498 560.051z" FillRule="NonZero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="GridViewEditButton" TargetType="{x:Type Button}" BasedOn="{StaticResource DetailsViewEditButton}" />-->
+    
     <Style x:Key="PannelToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="#d3d8e0" />
         <Setter Property="Foreground" Value="#ffffff" />
@@ -142,7 +261,7 @@
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Grid>
                         <Border x:Name="BorderBk" BorderThickness="0" Background="{TemplateBinding Background}"                            
-                            CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.14" />
+                            CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}" Opacity="0.14" />
                         <Border Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -211,6 +330,115 @@
                             </DataTrigger.ExitActions>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="PannelFavoriteToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="#67b3ff" />
+        <Setter Property="Foreground" Value="#67b3ff" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="IsChecked" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Border x:Name="BorderBk" BorderThickness="0" Background="#d3d8e0"                            
+                            CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}" Opacity="0.14" />
+                        <Border Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" >
+                                <ContentPresenter.Content>
+                                    <Viewbox Stretch="Uniform">
+                                        <Canvas Width="256" Height="256" Canvas.Left="0" Canvas.Top="0">
+                                            <Path x:Name="Path" Opacity="1.0" StrokeThickness="15" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" StrokeMiterLimit="10">
+                                                <Path.Data>
+                                                    <PathGeometry Figures="M127.755 18.624 c-2.061 0.101-3.846 1.465-4.485 3.427L98.312 96.933H18.379c-2.745 0.01-4.963 2.242-4.955 4.989 c0.006 1.572 0.754 3.05 2.019 3.984l64.925 47.476L55.41 230.873c-0.848 2.612 0.582 5.417 3.192 6.265 c1.521 0.495 3.186 0.228 4.475-0.719L128 188.945l64.926 47.474c2.212 1.624 5.324 1.144 6.947-1.071 c0.944-1.29 1.211-2.954 0.719-4.475l-24.959-77.492l64.922-47.476c2.211-1.63 2.681-4.743 1.049-6.953 c-0.934-1.265-2.41-2.015-3.984-2.02H157.69l-24.959-74.882C132.033 19.917 129.997 18.513 127.755 18.624z" FillRule="NonZero"/>
+                                                </Path.Data>
+                                            </Path>
+                                        </Canvas>
+                                    </Viewbox>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BorderBk"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.30"
+                                                Duration="0:0:0.2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BorderBk"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0.14"
+                                                Duration="0:0:0.2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="#80ffffff" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type Button}" x:Key="PlayersCountButtonStyle">
+        <Setter Property="Background" Value="{DynamicResource DetailsViewBannerPanelBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PlayersCountDetailsViewForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource DetailsViewBannerPanelBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeSmall}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Padding" Value="6,2,6,2" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                            <TextBlock Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                       Tag="{DynamicResource LOC_NewsViewer_PlayersInGameViewerControl_InGameCountLabel}"
+                                       Text="{Binding Path=Tag, RelativeSource={RelativeSource Self}, StringFormat=' {0}'}"/>
+                        </StackPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

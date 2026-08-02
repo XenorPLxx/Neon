@@ -23,7 +23,7 @@
                                 <ToggleButton.Template>
                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                                         <DockPanel LastChildFill="False" Background="Transparent">
-                                            <Viewbox DockPanel.Dock="Right" Width="20" >
+                                            <Viewbox DockPanel.Dock="Right" Width="24">
                                                 <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                                            VerticalAlignment="Center"/>
                                             </Viewbox>
@@ -40,15 +40,21 @@
                                      BorderThickness="0" Background="{TemplateBinding Background}"
                                      IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{DynamicResource TextBrush}">
                             </TextBox>
-                            <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}"
+                            <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}"
-                                            BorderThickness="{DynamicResource PopupBorderThickness}"
-                                            Background="{DynamicResource PopupBackgroundBrush}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" x:Name="PopupAnimationBorder" />
+                                    <Border Grid.Row="1" x:Name="PopupBorder" BorderBrush="{DynamicResource PopupBorderBrush}"
+                                                BorderThickness="{DynamicResource PopupBorderThickness}"
+                                                Background="{DynamicResource PopupBackgroundBrush}">
                                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            <ItemsPresenter Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
+                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                         </ScrollViewer>
                                     </Border>
                                 </Grid>
@@ -56,6 +62,20 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PopupBorder" Storyboard.TargetProperty="Opacity"
+                                             FillBehavior="HoldEnd"
+                                             From="0" To="1" Duration="0:0:0.16"/>
+                                        <DoubleAnimation Storyboard.TargetName="PopupAnimationBorder" Storyboard.TargetProperty="Height"
+                                             FillBehavior="HoldEnd"
+                                             From="7" To="0" Duration="0:0:0.08"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{DynamicResource ComboboxIsMouseOverBackgroundBrush}" />
                         </Trigger>
@@ -107,5 +127,24 @@
                 <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ThemeExtrasUserControlCompStatusStyle" TargetType="UserControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox MinWidth="115"
+                                  ItemsSource="{Binding CompletionStatusOptions}" SelectedItem="{Binding Value}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type CompletionStatus}">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

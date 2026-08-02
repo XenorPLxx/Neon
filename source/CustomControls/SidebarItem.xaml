@@ -9,17 +9,35 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="BorderThickness" Value="0,0,0,0" />
-        <Setter Property="Width" Value="44" />
+        <Setter Property="Width" Value="40" />
         <Setter Property="Opacity" Value="0.75" />
-        <Setter Property="Height" Value="44" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Margin" Value="0,0,0,5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type SidebarItem}">
                     <Grid>
                         <ProgressBar x:Name="PART_ProgressStatus"
-                                     BorderThickness="0" Background="Transparent"
-                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                                     Margin="2,0,2,0"
+                                     BorderThickness="0" Background="{DynamicResource TopPanelItemForegroundBrush}"
+                                     Foreground="{DynamicResource GlyphBrush}"
+                                     Height="3"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                            <ProgressBar.Style>
+                                <Style TargetType="ProgressBar">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Value, ElementName=PART_ProgressStatus}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Value, ElementName=PART_ProgressStatus}" Value="100">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ProgressBar.Style>
+                        </ProgressBar>
                         <Border Background="{TemplateBinding Background}"
                                 Padding="{Binding IconPadding}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -36,6 +54,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource TopPanelItemIsMouseOverForegroundBrush}" />
+                <Setter Property="Opacity" Value="1.00" />
             </Trigger>
             <DataTrigger Binding="{Binding Selected}" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
@@ -43,13 +62,16 @@
                 <Setter Property="Opacity" Value="1.00" />
             </DataTrigger>
             <DataTrigger Binding="{Settings SidebarPosition}" Value="Right">
+                <Setter Property="Margin" Value="0,0,0,5" />
                 <Setter Property="BorderThickness" Value="0,0,0,0" />
             </DataTrigger>
             <DataTrigger Binding="{Settings SidebarPosition}" Value="Top">
+                <Setter Property="Margin" Value="0,0,5,0" />
                 <Setter Property="BorderThickness" Value="0,0,0,0" />
             </DataTrigger>
             <DataTrigger Binding="{Settings SidebarPosition}" Value="Bottom">
                 <Setter Property="BorderThickness" Value="0,0,0,0" />
+                <Setter Property="Margin" Value="0,0,5,0" />
             </DataTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

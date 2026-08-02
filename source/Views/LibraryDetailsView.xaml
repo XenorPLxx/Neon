@@ -65,4 +65,209 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Label" x:Key="HeaderLabel">
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarger}"/>
+        <Setter Property="FontFamily" Value="Corbel"/>
+        <Setter Property="Foreground" Value="{DynamicResource DetailsViewOverviewHeaderLabelBrush}"/>
+        <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Opacity" Value="0.52"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="ContainerLabel">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
+        <Setter Property="FontFamily" Value="Corbel"/>
+        <Setter Property="Foreground" Value="{DynamicResource DetailsViewContainerLabelBrush}"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="0,0,20,0"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="HeaderTextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DetailsViewOverviewHeaderTextBlockBrush}"/>
+        <Setter Property="Opacity" Value="0.32"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="FeedSectionLabel">
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarger}"/>
+        <Setter Property="FontFamily" Value="Corbel"/>
+        <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+        <Setter Property="Foreground" Value="#94a1a6"/>
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="OutlineBorder">
+        <Setter Property="Tag" Value="{DynamicResource DetailsViewEnablePanelsDropShadowEffect}" />
+        <Setter Property="Background" Value="{DynamicResource LinksContainerBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="#1A000025" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Margin" Value="-0.5" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect RenderingBias="Performance" BlurRadius="3" ShadowDepth="0" Color="#000025" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="Border" x:Key="OutlineBorderMainPanels">
+        <Setter Property="Tag" Value="{DynamicResource DetailsViewEnablePanelsDropShadowEffect}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DetailsPanelsBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect RenderingBias="Performance" BlurRadius="3" ShadowDepth="0" Color="#000025" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Border" x:Key="OutlineBorderSidePanels">
+        <Setter Property="Tag" Value="{DynamicResource DetailsViewEnablePanelsDropShadowEffect}" />
+        <Setter Property="Background" Value="{DynamicResource SectionContainerBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SectionContainerBorderBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect RenderingBias="Performance" BlurRadius="3" ShadowDepth="0" Color="#000025" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Border" x:Key="OutlineBorderSidePanelsBorder">
+        <Setter Property="Tag" Value="{DynamicResource DetailsViewEnablePanelsDropShadowEffect}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="#80252a31" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="true">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect RenderingBias="Performance" BlurRadius="12" ShadowDepth="0" Color="#000025" Opacity="1"/>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="Border" x:Key="SectionContainerMain">
+        <Setter Property="Background" Value="{DynamicResource SectionContainerMainBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="#1A000025" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Margin" Value="-0.5" />
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="PluginStackpanelVisibility">
+        <Setter Property="Tag" Value="False" />
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="Margin" Value="0,0,0,15" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="ContentControl" x:Key="ControlPanelBoolTagToVisibility">
+        <Setter Property="Visibility" Value="Visible" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue=true}" Value="false" >
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" x:Key="HltbGridTextStyle">
+        <Setter Property="Margin" Value="20,5,0,5" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text, FallbackValue=--}" Value="--">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <DataTemplate x:Key="HltbDataGridTemplate">
+        <DataTemplate.Resources>
+            <Style TargetType="Label" x:Key="HltbGridLabelStyle">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}"/>
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="TextBlock" x:Key="HltbGridTextStyle" BasedOn="{StaticResource BaseTextBlockStyle}">
+                <Setter Property="Margin" Value="20,5,0,5" />
+                <Setter Property="Visibility" Value="Visible" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="--">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </DataTemplate.Resources>
+        <GridEx Name="HltbDataGrid" ColumnCount="2" AutoLayoutColumns="2" RowCount="6" Tag="{DynamicResource DetailsViewShowHltbDataGrid}">
+            <Label Content="{DynamicResource LOCHowLongToBeatMainStory}"
+                    Style="{DynamicResource HltbGridLabelStyle}"
+                    Visibility="{Binding ElementName=MainStoryFormat, Path=Visibility}" />
+            <TextBlock Name="MainStoryFormat"
+                       Style="{DynamicResource HltbGridTextStyle}"
+                       Text="{PluginSettings Plugin=HowLongToBeat, Path=MainStoryFormat, FallbackValue='--'}"/>
+
+            <Label Content="{DynamicResource LOCHowLongToBeatMainExtra}"
+                    Style="{DynamicResource HltbGridLabelStyle}"
+                    Visibility="{Binding ElementName=MainExtraFormat, Path=Visibility}" />
+
+            <TextBlock Name="MainExtraFormat"
+                Style="{DynamicResource HltbGridTextStyle}"
+                Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat, FallbackValue='--'}"/>
+
+            <Label Content="{DynamicResource LOCHowLongToBeatCompletionist}"
+                    Style="{DynamicResource HltbGridLabelStyle}"
+                    Visibility="{Binding ElementName=CompletionistFormat, Path=Visibility}" />
+            <TextBlock Name="CompletionistFormat"
+                        Style="{DynamicResource HltbGridTextStyle}"
+                        Text="{PluginSettings Plugin=HowLongToBeat, Path=CompletionistFormat, FallbackValue='--'}"/>
+
+            <Label Content="{DynamicResource LOCHowLongToBeatSolo}"
+                    Style="{DynamicResource HltbGridLabelStyle}"
+                    Visibility="{Binding ElementName=SoloFormat, Path=Visibility}" />
+            <TextBlock Name="SoloFormat"
+                        Style="{DynamicResource HltbGridTextStyle}"
+                        Text="{PluginSettings Plugin=HowLongToBeat, Path=SoloFormat, FallbackValue='--'}"/>
+
+            <Label Content="{DynamicResource LOCHowLongToBeatCoOp}"
+                    Style="{DynamicResource HltbGridLabelStyle}"
+                    Visibility="{Binding ElementName=CoOpFormat, Path=Visibility}" />
+            <TextBlock Name="CoOpFormat"
+                Style="{DynamicResource HltbGridTextStyle}"
+                Text="{PluginSettings Plugin=HowLongToBeat, Path=CoOpFormat, FallbackValue='--'}"/>
+
+            <Label Content="{DynamicResource LOCHowLongToBeatVs}"
+                    Style="{DynamicResource HltbGridLabelStyle}"
+                    Visibility="{Binding ElementName=VsFormat, Path=Visibility}" />
+            <TextBlock Name="VsFormat"                     
+                Style="{DynamicResource HltbGridTextStyle}"
+                Text="{PluginSettings Plugin=HowLongToBeat, Path=VsFormat, FallbackValue='--'}"/>
+        </GridEx>
+    </DataTemplate>
 </ResourceDictionary>

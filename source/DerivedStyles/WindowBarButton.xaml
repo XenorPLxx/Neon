@@ -4,11 +4,12 @@
     <Style x:Key="WindowBarButton" TargetType="Button">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowBarButtonForegroundBrush}" />
         <Setter Property="Margin" Value="5,0,5,0" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />    
         <Setter Property="Template">
             <Setter.Value>
@@ -23,10 +24,10 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                <Setter Property="Foreground" Value="White" />
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                <Setter Property="Foreground" Value="White" />
             </Trigger>
         </Style.Triggers>
     </Style>

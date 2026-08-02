@@ -2,74 +2,246 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+                    xmlns:popt="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     mc:Ignorable="d">
 
-    <Style x:Key="GridViewItemTemplate" TargetType="{x:Type GameListItem}">
+    <Style TargetType="Border" x:Key="VisualBrushBorderMask" popt:Freeze="True">
+        <Setter Property="Background" Value="{DynamicResource GridViewItemMaskBackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource GridViewCoverCornerRadius}" />
+        <Setter Property="Visibility" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Settings ShowGridItemBackground}" Value="True" />
+                    <Condition Binding="{Settings ShowNamesUnderCovers}" Value="True" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="CornerRadius" Value="{DynamicResource GridViewCoverGridBackgroundDisabledCornerRadius}" />
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="False">
+                <Setter Property="CornerRadius" Value="0,0,0,0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GridViewItemTemplate" TargetType="{x:Type GameListItem}" popt:Freeze="True">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Grid>
-                        <Border BorderThickness="{Settings GridItemMargin}" BorderBrush="{DynamicResource GridItemBackgroundBrush}">
-                            <StackPanel Name="PART_PanelHost"
+                    <Border BorderThickness="{Settings GridItemMargin}" BorderBrush="{DynamicResource GridItemBackgroundBrush}"
+                                Background="Transparent">
+                        <StackPanel Name="PART_PanelHost" Width="{Settings GridItemWidth}"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
-
-                                <Grid Width="{Settings GridItemWidth}"
-                                      Height="{Settings GridItemHeight}">
-                                    <Image Name="PART_ImageCover"
+                            <Grid>
+                                <Border Style="{StaticResource VisualBrushBorderMask}" Name="Mask"
+                                        Tag="{DynamicResource GridViewCoverUseRoundedCorners}" />
+                                <StackPanel>
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=Mask, Path=Tag}" Value="True">
+                                                    <Setter Property="OpacityMask">
+                                                        <Setter.Value>
+                                                            <VisualBrush Visual="{Binding ElementName=Mask}"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <ContentControl x:Name="ThemeExtras_Banner"
+                                                RenderOptions.BitmapScalingMode="Fant"
+                                                Width="{Binding Width, ElementName=PART_ImageCover}"
+                                                Tag="{DynamicResource GridViewCoverDisplayLibraryBanner}"
+                                                HorizontalAlignment="Center"
+                                                Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <Image Name="PART_ImageCover" Height="{Settings GridItemHeight}"
+                                           SnapsToDevicePixels="True"
                                            RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" VerticalAlignment="Top"
                                            Stretch="{Settings CoverArtStretch}" />
-                                    <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
-                                        <TextBlock Text="{Binding DisplayName}"
-                                                   TextWrapping="Wrap" Margin="5"
-                                                   Style="{StaticResource BaseTextBlockStyle}"
-                                                   TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5">
-                                        <Border CornerRadius="8" Background="{DynamicResource OpaqueGrayHighlightBrush}" Opacity="0.3"/>
-                                        <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
-                                    </Grid>
-                                    <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                                             Name="GameControls">
-                                        <Border Margin="30,50,30,5"
+
+                                </StackPanel>
+
+
+                                <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed"
+                                        CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}">
+                                    <TextBlock Text="{Binding DisplayName}"
+                                               TextWrapping="Wrap" Margin="5"
+                                               Style="{StaticResource BaseTextBlockStyle}"
+                                               TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+
+                                <Border Background="#000000" CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}"
+                                            x:Name="BorderMouseOver" Visibility="Collapsed" Opacity="0.70" />
+                                <Border x:Name="GlowPlayingBorder" Visibility="Collapsed" Tag="False"
+                                            CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}"
+                                            Style="{DynamicResource CoverIsPlayingAnimatedBackground}" />
+                                <TextBlock Name="EnablePlayingGlowBorder" Visibility="Collapsed"
+                                                Tag="{DynamicResource GridViewEnablePlayingGlowBorder}" />
+                                <Border Name="ShineBackground" Tag="False" IsHitTestVisible="False"
+                                            CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}"
+                                            Style="{DynamicResource AnimatedCoverShineBackground}" />
+                                <TextBlock Name="EnableHighlightAnimation" Visibility="Collapsed"
+                                                Tag="{DynamicResource GridViewEnableCoverShineAnimation}" />
+
+                                <Border Background="{DynamicResource CoversButtonsBrush}"
+                                        CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}"
+                                        x:Name="BorderDarkFade" Visibility="Collapsed" />
+                                <StackPanel>
+                                    <Border Height="{Binding ElementName=ThemeExtras_Banner, Path=ActualHeight}"
+                                            Visibility="{Binding ElementName=ThemeExtras_Banner, Path=Visibility}" />
+                                    <TextBlock Text="&#xF000;" Foreground="#67b3ff" ClipToBounds="True"
+                                           Opacity="0.90" FontSize="16"
+                                           Margin="8,5,5,5"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Right"
+                                           FontFamily="{DynamicResource FontIcoFont}"
+                                           Tag="{DynamicResource GridViewLibraryGameShowFavorite}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" >
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Favorite}" Value="True" />
+                                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True" />
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                        <Setter Property="Effect">
+                                                            <Setter.Value>
+                                                                <DropShadowEffect RenderingBias="Performance"
+                                                                              BlurRadius="6" ShadowDepth="0" Color="#000000" />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                         Name="GameControls" Visibility="Collapsed">
+                                    <Border Margin="30,50,30,5"
                                             CornerRadius="{DynamicResource ControlCornerRadiusSmall}" Padding="1">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="Background" Value="#87000000" />
-                                                    <Setter Property="Opacity" Value="0.1" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=IsMouseOver}" Value="True">
-                                                            <Setter Property="Opacity" Value="0.40" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True">
-                                                            <Setter Property="Background" Value="#A6000000" />
-                                                            <Setter Property="Opacity" Value="1.0" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Height="12" Width="12" Name="PART_ButtonInfo" Style="{DynamicResource InfoButton}"
-                                                Margin="0,0,0,0" VerticalAlignment="Center" FontFamily="{StaticResource FontIcoFont}" />
-                                            </StackPanel>
-                                        </Border>
-                                    </Viewbox>
-                                </Grid>
-                                <TextBlock Text="{Binding DisplayName}"
-                                   Style="{DynamicResource BaseTextBlockStyle}"                                                                   
-                                   TextAlignment="Center" TextTrimming="CharacterEllipsis"
-                                   VerticalAlignment="Center"
-                                   Padding="2,5,2,5" Grid.Row="1" Grid.Column="0"
-                                   Width="{Settings GridItemWidth}" 
-                                   Visibility="{Settings ShowNamesUnderCovers}" />
-                            </StackPanel>
-                        </Border>
-                        <Border Background="#000000" x:Name="BorderMouseOver" Visibility="Collapsed" IsHitTestVisible="False" Opacity="0.60"/>
-                    </Grid>
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="#87000000" />
+                                                <Setter Property="Opacity" Value="0.40" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True">
+                                                        <Setter Property="Background" Value="#A6000000" />
+                                                        <Setter Property="Opacity" Value="1.0" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Height="12" Width="12" Name="PART_ButtonInfo" Style="{DynamicResource InfoButton}"
+                                                    Margin="0" VerticalAlignment="Center" FontFamily="{StaticResource FontIcoFont}" />
+                                        </StackPanel>
+                                    </Border>
+                                </Viewbox>
+                            </Grid>
+
+                            <Border x:Name="ShowGameNameBorder" Background="Transparent">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="0" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=Mask, Path=Tag}" Value="True">
+                                                <Setter Property="CornerRadius" Value="{DynamicResource GridViewShowGameNameCornerRadius}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock x:Name="ShowGameName" Text="{Binding DisplayName}"
+                                               Foreground="{DynamicResource TextBrush}"
+                                               Style="{DynamicResource BaseTextBlockStyle}"                                                                   
+                                               TextAlignment="Center" TextTrimming="CharacterEllipsis"
+                                               VerticalAlignment="Center"
+                                               Padding="2,5,2,5" Grid.Row="1" Grid.Column="0"
+                                               Width="{Settings GridItemWidth}" 
+                                               Visibility="{Settings ShowNamesUnderCovers}"/>
+                            </Border>
+
+                            <DockPanel Width="{Settings GridItemWidth}"
+                                       Visibility="{DynamicResource GridViewCoverSubtitleVisibility}">
+                                <TextBlock Text="&#xEEDC;" FontSize="{DynamicResource FontSizeSmall}"
+                                            FontFamily="{StaticResource FontIcoFont}"
+                                            TextAlignment="Left" VerticalAlignment="Center"
+                                            Padding="2,4,2,5" Margin="0,0,0,-2"
+                                            Foreground="{DynamicResource GridViewCoverSubtitleBrush}" />
+                                <TextBlock Text="{Binding Playtime, Mode=OneWay, Converter={StaticResource PlayTimeToStringConverter}, IsAsync=True}"
+                                            Foreground="{DynamicResource GridViewCoverSubtitleBrush}"
+                                            FontSize="{DynamicResource FontSizeSmall}"
+                                            Style="{DynamicResource BaseTextBlockStyle}"                                                                   
+                                            TextAlignment="Left" TextTrimming="CharacterEllipsis"
+                                            VerticalAlignment="Center"
+                                            Padding="3,4,2,2" />
+                            </DockPanel>
+                            <DockPanel Width="{Settings GridItemWidth}"
+                                        Tag="{DynamicResource GridViewCoverCompStatusSubtitleVisibility}">
+                                <DockPanel.Style>
+                                    <Style TargetType="DockPanel">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CompletionStatus.Name, TargetNullValue='', FallbackValue=''}" Value=''>
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="Collapsed">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DockPanel.Style>
+                                <TextBlock Text="&#xEC74;" FontSize="{DynamicResource FontSizeSmall}"
+                                            FontFamily="{StaticResource FontIcoFont}"
+                                            TextAlignment="Left" VerticalAlignment="Center"
+                                            Padding="2,4,2,5" Margin="0,0,0,-2"
+                                            Foreground="{DynamicResource GridViewCoverSubtitleBrush}" />
+                                <TextBlock x:Name="CompletionStatusName" Text="{Binding CompletionStatus.Name, Mode=OneWay, IsAsync=True}"
+                                            ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                                            Foreground="{DynamicResource GridViewCoverSubtitleBrush}"
+                                            FontSize="{DynamicResource FontSizeSmall}"
+                                            Style="{DynamicResource BaseTextBlockStyle}"
+                                            TextAlignment="Left" TextTrimming="CharacterEllipsis"
+                                            VerticalAlignment="Center"
+                                            Padding="3,4,2,2" />
+                            </DockPanel>
+                        </StackPanel>
+                    </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="GameControls"/>
+                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=EnableHighlightAnimation, Path=Tag}" Value="True" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Tag" Value="True" TargetName="ShineBackground" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsVisible}" Value="True" />
+                                <Condition Binding="{Binding Source={x:Static p:PlayniteApplication.Current}, Path=IsActive}" Value="True" />
+                                <Condition Binding="{Binding ElementName=EnablePlayingGlowBorder, Path=Tag}" Value="True" />
+                                <Condition Binding="{Binding IsRunning}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Tag" Value="True" TargetName="GlowPlayingBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowPlayingBorder" />
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Settings ShowGridItemBackground}" Value="True">
+                            <Setter Property="Padding" Value="2,5,2,5" TargetName="ShowGameName" />
+                            <Setter Property="TextAlignment" Value="Center" TargetName="ShowGameName" />
+                            <Setter Property="Background" Value="{DynamicResource GridItemBackgroundBrush}" TargetName="ShowGameNameBorder" />
+                        </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsInstalled}" Value="False" />
@@ -86,7 +258,7 @@
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsInstalled}" Value="False" />
+                                <Condition Binding="{Binding ElementName=BorderMouseOver, Path=Visibility}" Value="Visible" />
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.EnterActions>
@@ -108,7 +280,7 @@
                                     <Storyboard>
                                         <DoubleAnimation
                                             Storyboard.TargetProperty="Opacity"
-                                            To="0.60" Storyboard.TargetName="BorderMouseOver"
+                                            To="0.70" Storyboard.TargetName="BorderMouseOver"
                                             Duration="0:0:0.30">
                                             <DoubleAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
@@ -124,6 +296,138 @@
         </Setter>
     </Style>
 
+    <Style x:Key="CoverIsPlayingAnimatedBackground" TargetType="Border">
+        <Style.Resources>
+            <Color x:Key="BackgroundColor1">#26ffffff</Color>
+            <Color x:Key="BackgroundColor2">#00000000</Color>
+            <Color x:Key="BackgroundColor3">#99000000</Color>
+        </Style.Resources>
+        <Setter Property="Background" x:Name="AnimatedBackground">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource BackgroundColor2}" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard x:Name="Animation">
+                        <Storyboard Timeline.DesiredFrameRate="20">
+                            <ColorAnimationUsingKeyFrames
+                                    Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                    FillBehavior="HoldEnd"
+                                    AutoReverse="True" RepeatBehavior="Forever">
+                                <ColorAnimationUsingKeyFrames.KeyFrames>
+                                    <LinearColorKeyFrame Value="{StaticResource BackgroundColor1}" KeyTime="00:00:00.00" />
+                                    <LinearColorKeyFrame Value="{StaticResource BackgroundColor1}" KeyTime="00:00:00.10" />
+                                    <LinearColorKeyFrame Value="{StaticResource BackgroundColor2}" KeyTime="00:00:00.80" />
+                                    <LinearColorKeyFrame Value="{StaticResource BackgroundColor3}" KeyTime="00:00:01.50" />
+                                    <LinearColorKeyFrame Value="{StaticResource BackgroundColor3}" KeyTime="00:00:01.55" />
+                                </ColorAnimationUsingKeyFrames.KeyFrames>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <RemoveStoryboard BeginStoryboardName="Animation"/>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="AnimatedCoverShineBackground" TargetType="Border">
+        <Setter Property="Opacity" Value="0.00" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="1.0, 0.0" EndPoint="0.07, 1.0">
+                    <GradientStop Color="#00d2d2d2" Offset="-0.10" />
+                    <GradientStop Color="#59d2d2d2" Offset="0.18"/>
+                    <GradientStop Color="#59d2d2d2" Offset="0.22" />
+                    <GradientStop Color="Transparent" Offset="0.25" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Timeline.DesiredFrameRate="20">
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="0.90"
+                                    Duration="0:0:0.5">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Background.(GradientBrush.GradientStops)[1].(GradientStop.Offset)"
+                                    To="0.35"
+                                    Duration="0:0:0.5">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Background.(GradientBrush.GradientStops)[2].(GradientStop.Offset)"
+                                    To="0.40"
+                                    Duration="0:0:0.5">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Background.(GradientBrush.GradientStops)[3].(GradientStop.Offset)"
+                                    To="0.48"
+                                    Duration="0:0:0.5">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="0.00"
+                                    Duration="0:0:0.4">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Background.(GradientBrush.GradientStops)[1].(GradientStop.Offset)"
+                                    To="0.18"
+                                    Duration="0:0:0.4">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Background.(GradientBrush.GradientStops)[2].(GradientStop.Offset)"
+                                    To="0.22"
+                                    Duration="0:0:0.4">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Background.(GradientBrush.GradientStops)[3].(GradientStop.Offset)"
+                                    To="0.25"
+                                    Duration="0:0:0.4">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style
         x:Key="DuplicateHider_IconContentControlStyle1"
         BasedOn="{StaticResource {x:Type ContentControl}}"
@@ -157,7 +461,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="Button" x:Key="ButtonPlay" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="Transparent" />
@@ -256,4 +560,30 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="Border" x:Key="DropShadowBorderStyle">
+        <Setter Property="BorderBrush" Value="{DynamicResource GridViewItemMaskBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="8,0,8,8" />
+        <Setter Property="CornerRadius" Value="{DynamicResource GridViewCoverCornerRadius}" />
+        <Setter Property="CacheMode">
+            <Setter.Value>
+                <BitmapCache EnableClearType="False"
+                             RenderAtScale="0.5"
+                             SnapsToDevicePixels="False" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect RenderingBias="Performance"
+                                  ShadowDepth="5" BlurRadius="8" Direction="270"
+                                  Color="#000000" Opacity="0.5" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="False">
+                <Setter Property="CornerRadius" Value="0,0,0,0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
 </ResourceDictionary>
