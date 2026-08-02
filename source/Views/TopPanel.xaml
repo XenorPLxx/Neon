@@ -153,8 +153,8 @@
         <Setter Property="Padding" Value="6,6,6,6" />
         <Setter Property="MinHeight" Value="24" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource TopPanelItemIsMouseOverForegroundBrush}" />
+        <Setter Property="Background" Value="#25272d" />
+        <Setter Property="Foreground" Value="#808080" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
@@ -193,7 +193,8 @@
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource TopPanelItemIsMouseOverBackgroundBrush}" />
+                <Setter Property="Background" Value="#3e4047" />
+                <Setter Property="Foreground" Value="#ccffffff" />
             </Trigger>
         </Style.Triggers>
     </Style>
