@@ -462,8 +462,8 @@
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0">
-                                                <Border Background="{DynamicResource GameInfoContainerBackgroundBrush}"
-                                                    Margin="20,0,30,0" Padding="15,10,15,10">
+                                                <Border Background="Transparent"
+                                                    Margin="20,0,30,0" Padding="0">
                                                     <DockPanel LastChildFill="True">
                                                         <DockPanel.Resources>
                                                             <Style TargetType="Button" BasedOn="{StaticResource PropertyItemButton}" />
@@ -475,74 +475,86 @@
                                                                 <Setter Property="VerticalAlignment" Value="Top" />
                                                             </Style>
                                                         </DockPanel.Resources>
-                                                        <DockPanel Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}" >
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Border Grid.Row="0" Background="{DynamicResource GameInfoContainerBackgroundBrush}" Padding="15,10">
                                                             <StackPanel>
                                                                 <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
-                                                                        Style="{DynamicResource BaseTextBlockStyle}" Visibility="Collapsed"/>
+                                                                           Style="{DynamicResource BaseTextBlockStyle}" Visibility="Collapsed"/>
                                                                 <Separator Background="{DynamicResource PanelSeparatorBrush}" Visibility="Collapsed"/>
                                                                 <HtmlTextView Name="PART_HtmlDescription"
-                                                                            Margin="0,5,0,5"
-                                                                            HtmlFontSize="{DynamicResource FontSize}"
-                                                                            HtmlFontFamily="{DynamicResource FontFamily}"
-                                                                            HtmlForeground="{DynamicResource DetailsViewContainerLabelColor}"
-                                                                            LinkForeground="{DynamicResource GlyphColor}"                                      
-                                                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                                                              Margin="0,5,0,5"
+                                                                              HtmlFontSize="{DynamicResource FontSize}"
+                                                                              HtmlFontFamily="{DynamicResource FontFamily}"
+                                                                              HtmlForeground="{DynamicResource DetailsViewContainerLabelColor}"
+                                                                              LinkForeground="{DynamicResource GlyphColor}"
+                                                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                                              ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                                                             </StackPanel>
-
-                                                            <!--<ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left">
-                                                                <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="7">
-                                                                    <GridEx.Resources>
-                                                                        <Style TargetType="Button" BasedOn="{StaticResource PropertyItemButton}" />
-                                                                    </GridEx.Resources>
-                                                                    <Label Name="PART_ElemSeries" Content="{DynamicResource LOCSeriesLabel}" />
-                                                                    <ItemsControl Name="PART_ItemsSeries" />
-
-                                                                    <Label Name="PART_ElemRegion" Content="{DynamicResource LOCRegionLabel}" />
-                                                                    <ItemsControl Name="PART_ItemsRegions" />
-
-                                                                    <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
-                                                                    <Button Name="PART_ButtonVersion" VerticalAlignment="Center" />
-                                                                    <Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />
-
-                                                                    <TextBlock Name="PART_TextUserScore" VerticalAlignment="Center"
-                                                                                Style="{DynamicResource TextBlockGameScore}" />
-
-                                                                    <Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}" />
-                                                                    <TextBlock Name="PART_TextCommunityScore" VerticalAlignment="Center"
-                                                                                Style="{DynamicResource TextBlockGameScore}" />
-
-                                                                    <Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />
-                                                                    <TextBlock Name="PART_TextCriticScore" VerticalAlignment="Center"
-                                                                                Style="{DynamicResource TextBlockGameScore}" />
-
-                                                                    <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
-                                                                    <ItemsControl Name="PART_ItemsAgeRatings" />
-                                                                </GridEx>
-                                                            </ScrollViewer>-->
-                                                            <ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left"
-                                                                          VerticalScrollBarVisibility="Disabled"
-                                                                          HorizontalScrollBarVisibility="Disabled">
-                                                                <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="6">
-                                                                    <Label Name="PART_ElemRecentActivity" Content="{DynamicResource LOCRecentActivityLabel}" />
-                                                                    <TextBlock Name="PART_TextRecentActivity" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <Grid Grid.Row="1" Margin="0,10,0,0" Background="{DynamicResource GameInfoContainerBackgroundBrush}">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <GridEx Grid.Column="0" ColumnCount="2" AutoLayoutColumns="2" RowCount="6" Margin="15,10,5,10">
+                                                                    <Label Name="PART_ElemAdded" Content="{DynamicResource LOCDateAddedLabel}" />
+                                                                    <TextBlock Name="PART_TextAdded" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
                                                                     <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}" />
                                                                     <Button Name="PART_ButtonReleaseDate" />
                                                                     <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                                                     <Button Name="PART_ButtonLibrary" />
-                                                                    <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
-                                                                    <ItemsControl Name="PART_ItemsPlatforms" />
+                                                                    <Label Name="PART_ElemSource" Content="{DynamicResource LOCSourceLabel}" />
+                                                                    <Button Name="PART_ButtonSource" />
                                                                     <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
-                                                                    <ItemsControl Name="PART_ItemsDevelopers" MaxWidth="220" />
+                                                                    <ItemsControl Name="PART_ItemsDevelopers" MaxWidth="180" />
                                                                     <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
-                                                                    <ItemsControl Name="PART_ItemsPublishers" MaxWidth="220" />
+                                                                    <ItemsControl Name="PART_ItemsPublishers" MaxWidth="180" />
                                                                 </GridEx>
-                                                            </ScrollViewer>
-                                                        </DockPanel>
+                                                                <GridEx Grid.Column="1" ColumnCount="2" AutoLayoutColumns="2" RowCount="9" Margin="5,10,15,10">
+                                                                    <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
+                                                                    <TextBlock Name="PART_TextInstallSize" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
+                                                                    <Label Name="PART_ElemInstallDirectory" Content="{DynamicResource LOCGameInstallDirTitle}" />
+                                                                    <Button Name="PART_ButtonInstallDirectory" HorizontalAlignment="Left" MaxWidth="200" />
+                                                                    <Label Name="PART_ElemSeries" Content="{DynamicResource LOCSeriesLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsSeries" MaxWidth="200" />
+                                                                    <Label Name="PART_ElemRegion" Content="{DynamicResource LOCRegionLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsRegions" />
+                                                                    <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
+                                                                    <Button Name="PART_ButtonVersion" VerticalAlignment="Center" />
+                                                                    <Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />
+                                                                    <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=PART_TextUserScore, Path=Visibility}">
+                                                                        <TextBlock Name="PART_TextUserScore" VerticalAlignment="Center" Style="{DynamicResource TextBlockGameScore}" />
+                                                                        <ContentControl Content="{Binding Game.UserScore}" Padding="6,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                                        Background="Transparent" Foreground="{Binding ElementName=PART_TextUserScore, Path=Foreground}"
+                                                                                        Height="{Binding ElementName=PART_TextUserScore, Path=ActualHeight}" ContentTemplate="{StaticResource FiveStarScoreTemplate}"/>
+                                                                    </StackPanel>
+                                                                    <Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}" />
+                                                                    <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=PART_TextCommunityScore, Path=Visibility}">
+                                                                        <TextBlock Name="PART_TextCommunityScore" VerticalAlignment="Center" Style="{DynamicResource TextBlockGameScore}" />
+                                                                        <ContentControl Content="{Binding Game.CommunityScore}" Padding="6,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                                        Background="Transparent" Foreground="{Binding ElementName=PART_TextCommunityScore, Path=Foreground}"
+                                                                                        Height="{Binding ElementName=PART_TextCommunityScore, Path=ActualHeight}" ContentTemplate="{StaticResource FiveStarScoreTemplate}"/>
+                                                                    </StackPanel>
+                                                                    <Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />
+                                                                    <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=PART_TextCriticScore, Path=Visibility}">
+                                                                        <TextBlock Name="PART_TextCriticScore" VerticalAlignment="Center" Style="{DynamicResource TextBlockGameScore}" />
+                                                                        <ContentControl Content="{Binding Game.CriticScore}" Padding="6,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                                        Background="Transparent" Foreground="{Binding ElementName=PART_TextCriticScore, Path=Foreground}"
+                                                                                        Height="{Binding ElementName=PART_TextCriticScore, Path=ActualHeight}" ContentTemplate="{StaticResource FiveStarScoreTemplate}"/>
+                                                                    </StackPanel>
+                                                                    <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsAgeRatings" />
+                                                                </GridEx>
+                                                            </Grid>
+                                                        </Grid>
 
                                                     </DockPanel>
                                                 </Border>
-                                                <Border Style="{DynamicResource OutlineBorder}" Margin="20,0,30,0" Padding="15,10,15,10"/>
+                                                <Border Style="{DynamicResource OutlineBorder}" Background="Transparent" Margin="20,0,30,0" Padding="15,10,15,10"/>
                                             </Grid>
                                             <Grid Grid.Row="1" Margin="20,10,30,10" Background="{DynamicResource LinksContainerBackgroundBrush}">
                                                 <Grid.Style>
@@ -637,8 +649,8 @@
                                                             </ItemsControl.ItemsPanel>
                                                             <ItemsControl.ItemTemplate>
                                                                 <DataTemplate>
-                                                                    <Button Content="{Binding Name}" Style="{StaticResource PropertyItemFeedPanelButton}"
-                                                                        Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SetTagFilterCommand}"
+                                                            <Button Content="{Binding Name}" Style="{StaticResource PropertyItemFeedPanelButton}"
+                                                                        Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SetPlatformFilterCommand}"
                                                                         CommandParameter="{Binding}"/>
                                                                 </DataTemplate>
                                                             </ItemsControl.ItemTemplate>
