@@ -23,7 +23,12 @@
                         <ItemsControl Name="PART_ItemsMessages" DockPanel.Dock="Top" >
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Style="{StaticResource NotificationMessage}" />
+                                    <Grid Margin="10,8,10,0">
+                                        <Button Style="{StaticResource NotificationMessage}" />
+                                        <Button Style="{StaticResource NotificationMessageCloseButton}"
+                                                HorizontalAlignment="Right"
+                                                Command="{Binding CloseCommand}" />
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.Template>
@@ -40,4 +45,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-</ResourceDictionary> 
+</ResourceDictionary>

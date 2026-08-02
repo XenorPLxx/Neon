@@ -36,8 +36,7 @@
                                  VerticalAlignment="Center"
                                  Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}"
                                  RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="Fant">
-                            <ContentControl Content="{Binding Value, TargetNullValue={StaticResource LinksIcon}}"
-                                            DataContext="{Binding Url, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
+                            <ContentControl Content="{Binding Url, TargetNullValue={StaticResource LinksIcon}, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
                         </Viewbox>
                         <TextBlock DockPanel.Dock="Left" FontSize="{TemplateBinding FontSize}"
                                    Foreground="{TemplateBinding Foreground}"
@@ -156,8 +155,7 @@
                                          VerticalAlignment="Center"
                                          Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}"
                                          RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="Fant">
-                                    <ContentControl Content="{Binding Value, TargetNullValue={StaticResource LinksIcon}}"
-                                                    DataContext="{Binding Url, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
+                                    <ContentControl Content="{Binding Url, TargetNullValue={StaticResource LinksIcon}, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
                                 </Viewbox>
                                 <TextBlock FontSize="{TemplateBinding FontSize}" FontWeight="Medium"
                                            Foreground="{TemplateBinding Foreground}"

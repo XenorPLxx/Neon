@@ -6,7 +6,7 @@
 
     <Style x:Key="NotificationMessage" TargetType="Button">
         <Setter Property="Command" Value="{Binding ActivateCommand}" />
-        <Setter Property="Margin" Value="10,8,10,0" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Cursor" Value="Hand" />
@@ -15,51 +15,49 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="NotificationMessageBorder" Style="{StaticResource HighlightBorder}" Background="{TemplateBinding Background}"
                             d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}">
-                        <DockPanel>
-                            <Button DockPanel.Dock="Right" Padding="6,0,6,0"
-                                    Content="r" FontFamily="Marlett"
-                                    Foreground="{TemplateBinding Foreground}"
-                                    VerticalAlignment="Stretch" BorderThickness="0"
-                                    Command="{Binding CloseCommand}">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="Cursor" Value="Hand" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border x:Name="CloseButtonBackground"
-                                                            Background="{TemplateBinding Background}">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                                          VerticalAlignment="Center"
-                                                                          Margin="{TemplateBinding Padding}" />
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="CloseButtonBackground"
-                                                                    Property="Background" Value="#33FFFFFF" />
-                                                        </Trigger>
-                                                        <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="CloseButtonBackground"
-                                                                    Property="Background" Value="#55000000" />
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                            <TextBlock Text="{Binding Text}"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       Style="{DynamicResource BaseTextBlockStyle}"
-                                       Margin="6,6,0,6" TextWrapping="Wrap"
-                                       MinHeight="38" DockPanel.Dock="Left" />
-                        </DockPanel>
+                        <TextBlock Text="{Binding Text}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Style="{DynamicResource BaseTextBlockStyle}"
+                                   Margin="6,6,44,6" TextWrapping="Wrap"
+                                   MinHeight="38" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{DynamicResource ButtonIsMouseOverBackgroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NotificationMessageCloseButton" TargetType="Button">
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Padding" Value="6,0,6,0" />
+        <Setter Property="Content" Value="r" />
+        <Setter Property="FontFamily" Value="Marlett" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="CloseButtonBackground"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="CloseButtonBackground"
+                                    Property="Background" Value="#33FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="CloseButtonBackground"
+                                    Property="Background" Value="#55000000" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
