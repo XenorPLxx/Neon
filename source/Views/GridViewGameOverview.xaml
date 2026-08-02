@@ -717,7 +717,7 @@
                                                             <Label Content="{DynamicResource LOCCommonLinksAchievements}"
                                                                    Style="{DynamicResource FeedSectionLabel}" Margin="0"/>
                                                         </ToggleButton>
-                                                        <Grid>
+                                                        <Grid Margin="0,0,0,10">
                                                             <Grid.Style>
                                                                 <Style TargetType="Grid">
                                                                     <Setter Property="Visibility" Value="Visible" />
@@ -774,7 +774,7 @@
                                                     </Grid>
                                                 </StackPanel>
                                                 
-                                                <StackPanel Name="HltbPanel" Margin="0,0,0,10">
+                                                <StackPanel Name="HltbPanel" Margin="0">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Collapsed" />
@@ -793,7 +793,7 @@
                                                                   IsChecked="{DynamicResource GridViewShowHltbPanelDefault}">
                                                         <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
                                                     </ToggleButton>
-                                                    <Grid>
+                                                    <Grid Margin="0,0,0,10">
                                                         <Grid.Style>
                                                             <Style TargetType="Grid">
                                                                 <Setter Property="Visibility" Value="Visible" />
@@ -925,7 +925,7 @@
                                                     </Grid>
                                                 </StackPanel>-->                                            
 
-                                                <StackPanel Name="VideoFeed" Margin="0,0,0,10">
+                                                <StackPanel Name="VideoFeed" Margin="0">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
@@ -975,7 +975,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="ReviewsPanel" Margin="0,0,0,10"
+                                                <StackPanel Name="ReviewsPanel" Margin="0"
                                                             Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="GridViewReviewsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
                                                                   Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
@@ -992,7 +992,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="NewsFeed" Margin="0,0,0,10"
+                                                <StackPanel Name="NewsFeed" Margin="0"
                                                             Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="GridViewNewsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
                                                                   Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
@@ -1009,7 +1009,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="VndbPanel" Margin="0,0,0,10"
+                                                <StackPanel Name="VndbPanel" Margin="0"
                                                             Visibility="{PluginSettings Plugin=VNDBNexus, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="GridViewVndbPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
                                                                   Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
@@ -1026,7 +1026,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="CheckDlcPanel" Margin="0,0,0,10"
+                                                <StackPanel Name="CheckDlcPanel" Margin="0"
                                                             Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="GridViewCheckDlcPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
                                                                   Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
@@ -1050,7 +1050,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="GameRelationsPanel" Margin="0,0,0,10">
+                                                <StackPanel Name="GameRelationsPanel" Margin="0">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Collapsed" />
@@ -1102,7 +1102,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="SteamScreenshots" Margin="0,0,0,10"
+                                                <StackPanel Name="SteamScreenshots" Margin="0"
                                                             Visibility="{PluginSettings Plugin=SteamScreenshots, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="GridViewSteamScreenshotsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
                                                                   Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
@@ -1119,7 +1119,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="WebExplorerPanel" Margin="0,0,0,10"
+                                                <StackPanel Name="WebExplorerPanel" Margin="0"
                                                             Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
                                                     <ToggleButton x:Name="GridViewWebExplorerPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
                                                                   Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
@@ -1227,7 +1227,7 @@
     <Style TargetType="StackPanel" x:Key="PluginStackpanelVisibility">
         <Setter Property="Tag" Value="False" />
         <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Margin" Value="0,0,0,10" />
+        <Setter Property="Margin" Value="0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
                 <Setter Property="Visibility" Value="Visible" />

@@ -57,6 +57,7 @@
 
     <Style x:Key="AdditionalPanelContent" TargetType="Grid">
         <Setter Property="Visibility" Value="Visible" />
+        <Setter Property="Margin" Value="0,0,0,10" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="False">
                 <Setter Property="Visibility" Value="Collapsed" />

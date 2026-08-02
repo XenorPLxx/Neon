@@ -181,7 +181,7 @@
     <Style TargetType="StackPanel" x:Key="PluginStackpanelVisibility">
         <Setter Property="Tag" Value="False" />
         <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Margin" Value="0,0,0,10" />
+        <Setter Property="Margin" Value="0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
                 <Setter Property="Visibility" Value="Visible" />
