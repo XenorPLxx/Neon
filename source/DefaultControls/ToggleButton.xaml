@@ -30,7 +30,6 @@
                             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                             <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" TargetName="Border"/>
                             <Setter Property="BorderBrush" Value="{DynamicResource GridItemBackgroundBrush}" TargetName="Border" />
-                            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" TargetName="Border"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

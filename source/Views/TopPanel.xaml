@@ -164,7 +164,7 @@
                             VerticalAlignment="Center"
                             Padding="{TemplateBinding Padding}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             Background="{TemplateBinding Background}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Viewbox Stretch="Uniform" Width="20" Height="20"
