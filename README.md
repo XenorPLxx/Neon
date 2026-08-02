@@ -3,9 +3,23 @@
 ![DownloadCountLatest](https://img.shields.io/github/downloads/XenorPLxx/Neon/latest/total?style=for-the-badge)
 ![License](https://img.shields.io/github/license/XenorPLxx/Neon?style=for-the-badge)
 
-# Neon 
+# Neon
 
-Neon (formerly 'Helium - Enhanced Grid Mod') is a project based on [Helium by darklinkpower](https://github.com/darklinkpower/Helium) for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode.
+Neon (formerly *Helium - Enhanced Grid Mod*) is a grid-focused [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode theme based on [Helium by darklinkpower](https://github.com/darklinkpower/Helium). It retains Neon’s more compact grid and detail sizing while incorporating Helium updates and extension integrations.
+
+## Installation
+
+Download the latest `.pthm` file from the [Releases page](https://github.com/XenorPLxx/Neon/releases/latest), then open it or drag it onto the Playnite Desktop window to install it.
+
+## Optional integrations
+
+Neon works without extensions. When installed, supported extensions can add their own controls to the theme, including:
+
+- [DuplicateHider](https://github.com/felixkmh/DuplicateHider) source selectors on grid covers and in the selected-game overview.
+- [HowLongToBeat](https://github.com/Lacro59/playnite-howlongtobeat-plugin) playtime data in the grid overview.
+- [SuccessStory](https://github.com/Lacro59/playnite-successstory-plugin) achievement progress, statistics, and charts.
+
+These controls appear only when the corresponding extension provides data for the selected game.
 
 ## Relevant settings
 

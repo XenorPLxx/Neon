@@ -633,6 +633,8 @@
                                                                     <ContentControl x:Name="SuccessStory_PluginProgressBar"  Height="20" Margin="0,0,0,10"/>
                                                                     <ContentControl x:Name="SuccessStory_PluginCompactUnlocked" />
                                                                     <ContentControl x:Name="SuccessStory_PluginCompactLocked" Margin="0,0,0,10"/>
+                                                                    <ContentControl x:Name="SuccessStory_PluginUserStats" Margin="0,0,0,10"/>
+                                                                    <ContentControl x:Name="SuccessStory_PluginChart" Margin="0,0,0,10"/>
                                                                     <ContentControl x:Name="SuccessStory_PluginButton" HorizontalAlignment="Right"/>
                                                                 </StackPanel>
                                                             </Border>
