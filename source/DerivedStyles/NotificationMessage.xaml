@@ -18,8 +18,37 @@
                         <DockPanel>
                             <Button DockPanel.Dock="Right" Padding="6,0,6,0"
                                     Content="r" FontFamily="Marlett"
+                                    Foreground="{TemplateBinding Foreground}"
                                     VerticalAlignment="Stretch" BorderThickness="0"
-                                    Command="{Binding CloseCommand}"/>
+                                    Command="{Binding CloseCommand}">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Cursor" Value="Hand" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="CloseButtonBackground"
+                                                            Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center" />
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="CloseButtonBackground"
+                                                                    Property="Background" Value="#33FFFFFF" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter TargetName="CloseButtonBackground"
+                                                                    Property="Background" Value="#55000000" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                             <TextBlock Text="{Binding Text}"
                                        Foreground="{TemplateBinding Foreground}"
                                        Style="{DynamicResource BaseTextBlockStyle}"
