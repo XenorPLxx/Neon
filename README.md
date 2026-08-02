@@ -20,8 +20,6 @@ Neon works without extensions. It includes integration hosts for the following o
 - **Library and game information:** CheckDLC, CheckLocalizations, SystemChecker, LibraryManagement, Game Relations, Review Viewer, News Viewer, VNDB Nexus, GOG Second Class Watcher, and Web Explorer.
 - **Interface additions:** PlayState and ThemeExtras.
 
-PlayniteAchievements is integrated natively; no theme migration is required. Other controls appear only when their extension is installed and enabled, and, where applicable, the selected game has data.
-
 ## Relevant settings
 
 Keep in mind that a similar effect can be achieved by using original [Helium](https://playnite.link/addons.html#8b15c46a-90c2-4fe5-9ebb-1ab25ba7fcb1) with the [Details to Grid View Converter](https://playnite.link/addons.html#ThemesDetailsViewToGridViewConverter_ef8a7226-eedc-478d-a506-92ee6c088aa3) add-on, which is a recommended way for most users.
