@@ -7,6 +7,7 @@ Constants:
     - DetailsViewDescriptionWidth(150,2400): 'Width of description'
     - DetailsViewDescriptionDockToRight: 'Dock description to the right'
     - DetailsViewShowInfoPanelDefault: 'Show information panel by default'
+    - DetailsViewShowAchievementsPanelDefault: 'Expand achievements panel by default'
     - DetailsViewBackgroundVerticalAlignment: 'Vertical alignment of the background image'
     - DetailsViewBackgroundHorizontalAlignment: 'Horizontal alignment of the background image'
     - DetailsViewEnablePanelsDropShadowEffect (Can cause performance degradation): 'Enable dropshadow effect in panels'

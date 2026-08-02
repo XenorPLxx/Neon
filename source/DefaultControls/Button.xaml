@@ -410,6 +410,42 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="DetailsSectionChevronToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="#d3d8e0" />
+        <Setter Property="Foreground" Value="#ffffff" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="ToolTip" Value="Show or hide this section" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Border x:Name="Background" Background="{TemplateBinding Background}"
+                                CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}" Opacity="0.14" />
+                        <Viewbox x:Name="Chevron" Margin="{TemplateBinding Padding}" Opacity="0.5"
+                                 RenderTransformOrigin="0.5,0.5">
+                            <Viewbox.RenderTransform>
+                                <RotateTransform x:Name="ChevronTransform" />
+                            </Viewbox.RenderTransform>
+                            <Path Data="M 4,7 L 12,15 L 20,7" Stroke="{TemplateBinding Foreground}"
+                                  StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round" />
+                        </Viewbox>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="ChevronTransform" Property="Angle" Value="180" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background" Property="Opacity" Value="0.30" />
+                            <Setter TargetName="Chevron" Property="Opacity" Value="0.85" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <Style TargetType="{x:Type Button}" x:Key="PlayersCountButtonStyle">
         <Setter Property="Background" Value="{DynamicResource DetailsViewBannerPanelBackgroundBrush}"/>

@@ -7,6 +7,7 @@
     <sys:Double x:Key="DetailsViewDescriptionWidth">400</sys:Double>
     <sys:Boolean x:Key="DetailsViewDescriptionDockToRight">false</sys:Boolean>
     <sys:Boolean x:Key="DetailsViewShowInfoPanelDefault">true</sys:Boolean>
+    <sys:Boolean x:Key="DetailsViewShowAchievementsPanelDefault">false</sys:Boolean>
     <VerticalAlignment x:Key="DetailsViewBackgroundVerticalAlignment">Center</VerticalAlignment>
     <HorizontalAlignment x:Key="DetailsViewBackgroundHorizontalAlignment">Left</HorizontalAlignment>
     <sys:Boolean x:Key="DetailsViewAllowUseOfLogos">true</sys:Boolean>

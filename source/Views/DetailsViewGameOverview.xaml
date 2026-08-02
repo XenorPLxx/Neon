@@ -1263,8 +1263,25 @@
 
                                                 <StackPanel Name="AchievementsPanel" Style="{DynamicResource PluginStackpanelVisibility}" ClipToBounds="False"
                                                             Visibility="{PluginSettings Plugin=PlayniteAchievements, Path=HasAchievements, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <Label Content="{DynamicResource LOCCommonLinksAchievements}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <DockPanel LastChildFill="False">
+                                                        <ToggleButton x:Name="AchievementsPanelToggleButton" DockPanel.Dock="Right"
+                                                                      Width="26" Height="26" Margin="0,-4,0,0"
+                                                                      Focusable="False"
+                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
+                                                                      IsChecked="{DynamicResource DetailsViewShowAchievementsPanelDefault}" />
+                                                        <Label Content="{DynamicResource LOCCommonLinksAchievements}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    </DockPanel>
                                                     <Grid ClipToBounds="False">
+                                                        <Grid.Style>
+                                                            <Style TargetType="Grid">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=AchievementsPanelToggleButton, Path=IsChecked}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Grid.Style>
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" ClipToBounds="False" />
                                                         <StackPanel ClipToBounds="False">
                                                             <Grid ClipToBounds="False">
@@ -1365,7 +1382,23 @@
                                                                 <Border Style="{DynamicResource OutlineBorderSidePanels}" />
                                                                 <Border Padding="10">
                                                                     <StackPanel>
-                                                                        <ContentControl x:Name="PlayniteAchievements_AchievementCompactUnlockedList" Margin="-10,0,5,10"/>
+                                                                        <Grid Margin="-10,0,5,10">
+                                                                            <ContentControl x:Name="PlayniteAchievements_AchievementCompactUnlockedList" />
+                                                                            <Border HorizontalAlignment="Right" Width="42" IsHitTestVisible="False" Panel.ZIndex="1">
+                                                                                <Border.Background>
+                                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                                                        <GradientStop Color="#00212124" Offset="0" />
+                                                                                        <GradientStop Color="#D9212124" Offset="1" />
+                                                                                    </LinearGradientBrush>
+                                                                                </Border.Background>
+                                                                                <Viewbox Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,7,0">
+                                                                                    <Path Data="M 3,3 L 10,10 L 3,17 M 10,3 L 17,10 L 10,17"
+                                                                                          Stroke="{DynamicResource GlyphBrush}" StrokeThickness="2"
+                                                                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                                                                          StrokeLineJoin="Round" />
+                                                                                </Viewbox>
+                                                                            </Border>
+                                                                        </Grid>
                                                                         <StackPanel>
                                                                             <StackPanel.Style>
                                                                                 <Style TargetType="StackPanel">
