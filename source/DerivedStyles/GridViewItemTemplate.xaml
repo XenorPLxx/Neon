@@ -66,6 +66,15 @@
 
                                 </StackPanel>
 
+                                <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"
+                                      Width="25" Height="25">
+                                    <Border CornerRadius="8" Background="{DynamicResource OpaqueGrayHighlightBrush}" Opacity="0.3"/>
+                                    <ContentControl x:Name="DuplicateHider_SourceSelector1"
+                                                    RenderOptions.BitmapScalingMode="Fant"
+                                                    Visibility="Visible"
+                                                    MaxHeight="25" MaxWidth="25"/>
+                                </Grid>
+
 
                                 <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed"
                                         CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}">

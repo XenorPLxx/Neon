@@ -170,11 +170,6 @@
                                                             VerticalAlignment="Bottom"
                                                             Visibility="{PluginSettings Plugin=GogSecondClassWatcher, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                             Margin="0,0,10,0"/>
-                                            <ContentControl x:Name="DuplicateHider_SourceSelector"
-                                                            DockPanel.Dock="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Visibility="{PluginSettings Plugin=DuplicateHider, Path=EnableUiIntegration, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                            Margin="0,0,10,0" />
                                         </DockPanel>
                                         <DockPanel DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20,0,30,8" >
                                             <ContentControl x:Name="PlayState_GameStateSwitchControl" Margin="0,0,10,0"
