@@ -423,16 +423,15 @@
                     <Grid>
                         <Border x:Name="Background" Background="{TemplateBinding Background}"
                                 CornerRadius="{DynamicResource DetailsViewExtraButtonsCornerRadius}" Opacity="0.14" />
-                        <Viewbox x:Name="Chevron" Margin="{TemplateBinding Padding}" Opacity="0.5">
-                            <Grid>
-                                <Path x:Name="ChevronDown" Data="M 4,7 L 12,15 L 20,7" Stroke="{TemplateBinding Foreground}"
-                                      StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
-                                      StrokeLineJoin="Round" />
-                                <Path x:Name="ChevronUp" Data="M 4,15 L 12,7 L 20,15" Stroke="{TemplateBinding Foreground}"
-                                      StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
-                                      StrokeLineJoin="Round" Visibility="Collapsed" />
-                            </Grid>
-                        </Viewbox>
+                        <Grid x:Name="Chevron" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path x:Name="ChevronDown" Data="M 2,2 L 10,10 L 18,2" Width="16" Height="8"
+                                  Stretch="Uniform" Stroke="{TemplateBinding Foreground}" StrokeThickness="2.5"
+                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+                            <Path x:Name="ChevronUp" Data="M 2,10 L 10,2 L 18,10" Width="16" Height="8"
+                                  Stretch="Uniform" Stroke="{TemplateBinding Foreground}" StrokeThickness="2.5"
+                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                  Visibility="Collapsed" />
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">

@@ -24,6 +24,7 @@ Constants:
     - GridViewDisplayGameNameIfLogoVisible: 'Display game name if logo is visible'
     - GridViewShowHltbDataGrid: 'Show HowLongToBeat data grid (Requires HowLongToBeat extension)'
     - GridViewShowMetadataDetailsDefault: 'Expand platform, tag and category values by default'
+    - GridViewShowAchievementsPanelDefault: 'Expand achievements panel by default'
     - GridViewShowHltbPanelDefault: 'Expand HowLongToBeat panel by default'
     - GridViewShowAdditionalPanelsDefault: 'Expand additional panels by default'
     - "Grid View Covers"

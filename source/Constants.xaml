@@ -19,6 +19,7 @@
     <sys:Boolean x:Key="GridViewAllowUseOfLogos">true</sys:Boolean>
     <sys:Boolean x:Key="GridViewShowHltbDataGrid">true</sys:Boolean>
     <sys:Boolean x:Key="GridViewShowMetadataDetailsDefault">false</sys:Boolean>
+    <sys:Boolean x:Key="GridViewShowAchievementsPanelDefault">false</sys:Boolean>
     <sys:Boolean x:Key="GridViewShowHltbPanelDefault">false</sys:Boolean>
     <sys:Boolean x:Key="GridViewShowAdditionalPanelsDefault">false</sys:Boolean>
     <sys:Boolean x:Key="GridViewEnableCoverShineAnimation">true</sys:Boolean>

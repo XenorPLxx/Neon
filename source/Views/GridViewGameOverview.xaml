@@ -15,12 +15,17 @@
                                   d:DesignHeight="1280"
                                   d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
                         <Grid Margin="0,0,0,40">
-                            <Button HorizontalAlignment="Right" VerticalAlignment="Top"
-                                    Content="r" FontFamily="Marlett" FontSize="20" Padding="4"
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Padding="0"
                                     Style="{DynamicResource DetailsSemiTransparentButton}"
                                     Command="{MainViewModel CloseGameSideBarCommand}"
-                                    DockPanel.Dock="Top" Margin="0,8,24,5" Height="32" Width="32"
-                                    Panel.ZIndex="1"/>
+                                    DockPanel.Dock="Top" Margin="0,10,22,5" Height="30" Width="30"
+                                    Panel.ZIndex="1">
+                                <Viewbox Width="13" Height="13" Stretch="Uniform">
+                                    <Path Data="M 3,3 L 13,13 M 13,3 L 3,13" StrokeThickness="2.4"
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+                                </Viewbox>
+                            </Button>
                             <StackPanel Name="BackgroundBlurPanel">
                                 <Border Height="{Binding ElementName=HeaderImagesGrid, Path=ActualHeight}" />
                                 <Border Name="FastBlurGrid" Opacity="0.25" VerticalAlignment="Top">
@@ -587,6 +592,15 @@
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
+                                                <Style x:Key="GridViewMetadataItems" TargetType="ItemsControl">
+                                                    <Setter Property="MaxHeight" Value="28" />
+                                                    <Setter Property="ClipToBounds" Value="True" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=GridViewMetadataToggleButton, Path=IsChecked}" Value="True">
+                                                            <Setter Property="MaxHeight" Value="10000" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
                                             </Grid.Resources>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="2*" />
@@ -604,7 +618,8 @@
                                                     <Label Content="{DynamicResource LOCGamePlatformTitle}" Style="{DynamicResource FeedSectionLabel}" />
                                                     <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
-                                                        <ItemsControl ItemsSource="{Binding Game.Platforms}" Margin="0,3,0,3">
+                                                        <ItemsControl ItemsSource="{Binding Game.Platforms}" Margin="0,3,0,3"
+                                                                      Style="{StaticResource GridViewMetadataItems}">
                                                             <ItemsControl.ItemsPanel>
                                                                 <ItemsPanelTemplate>
                                                                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
@@ -631,7 +646,8 @@
                                                     <Label Content="{DynamicResource LOCTagsLabel}" Style="{DynamicResource FeedSectionLabel}" />
                                                     <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
-                                                        <ItemsControl ItemsSource="{Binding Game.Tags}" Margin="0,3,0,3">
+                                                        <ItemsControl ItemsSource="{Binding Game.Tags}" Margin="0,3,0,3"
+                                                                      Style="{StaticResource GridViewMetadataItems}">
                                                             <ItemsControl.ItemsPanel>
                                                                 <ItemsPanelTemplate>
                                                                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
@@ -665,7 +681,8 @@
                                                     </DockPanel>
                                                     <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
-                                                        <ItemsControl ItemsSource="{Binding Game.Categories}" Margin="0,3,0,3">
+                                                        <ItemsControl ItemsSource="{Binding Game.Categories}" Margin="0,3,0,3"
+                                                                      Style="{StaticResource GridViewMetadataItems}">
                                                             <ItemsControl.ItemsPanel>
                                                                 <ItemsPanelTemplate>
                                                                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
@@ -694,8 +711,25 @@
                                                 <StackPanel Grid.Column="0" Margin="0,0,0,0">
                                                     <StackPanel Name="AchievementsPanel" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=PlayniteAchievements, Path=HasAchievements, FallbackValue=False}">
-                                                        <Label Content="{DynamicResource LOCCommonLinksAchievements}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                        <DockPanel LastChildFill="False">
+                                                            <ToggleButton x:Name="GridViewAchievementsPanelToggleButton" DockPanel.Dock="Right"
+                                                                          Width="26" Height="26" Margin="0,-4,0,0"
+                                                                          Focusable="False"
+                                                                          Style="{DynamicResource DetailsSectionChevronToggleButton}"
+                                                                          IsChecked="{DynamicResource GridViewShowAchievementsPanelDefault}" />
+                                                            <Label Content="{DynamicResource LOCCommonLinksAchievements}" Style="{DynamicResource FeedSectionLabel}"/>
+                                                        </DockPanel>
                                                         <Grid>
+                                                            <Grid.Style>
+                                                                <Style TargetType="Grid">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding ElementName=GridViewAchievementsPanelToggleButton, Path=IsChecked}" Value="False">
+                                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Grid.Style>
                                                             <Border Background="{DynamicResource SectionContainerBackgroundBrush}" />
                                                             <Border Style="{DynamicResource OutlineBorder}" />
                                                             <Border Padding="10" >
@@ -703,7 +737,8 @@
                                                                     <ContentControl x:Name="PlayniteAchievements_AchievementProgressBar"  Height="20" Margin="0,0,0,10"/>
                                                                     <ContentControl x:Name="PlayniteAchievements_AchievementCompactUnlockedList" />
                                                                     <ContentControl x:Name="PlayniteAchievements_AchievementCompactLockedList" Margin="0,0,0,10"/>
-                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementStats" Margin="0,0,0,10"/>
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementStats" Margin="0,0,0,10"
+                                                                                    HorizontalAlignment="Left" MaxWidth="360"/>
                                                                     <ContentControl x:Name="PlayniteAchievements_AchievementBarChart" Margin="0,0,0,10"/>
                                                                     <ContentControl x:Name="PlayniteAchievements_AchievementButton" HorizontalAlignment="Right"/>
                                                                 </StackPanel>
