@@ -1,5 +1,15 @@
 AddonId: 8b15c46a-90c2-4fe5-9ebb-1ab25ba7fcb2
 Packages:
+  - Version: 3.0
+    RequiredApiVersion: 2.9.0
+    ReleaseDate: 2026-08-02
+    PackageUrl: https://github.com/XenorPLxx/Neon/releases/download/3.0/8b15c46a-90c2-4fe5-9ebb-1ab25ba7fcb2_3_0.pthm
+    Changelog:
+      - "Updated Neon for current Playnite releases"
+      - "Added native PlayniteAchievements support in Grid and Details views"
+      - "Improved DuplicateHider source selectors and library icons"
+      - "Made game information and optional extension panels easier to collapse and expand"
+      - "Refined selected-game controls, notifications, and general theme styling"
   - Version: 2.0
     RequiredApiVersion: 2.1.0
     ReleaseDate: 2023-11-03
