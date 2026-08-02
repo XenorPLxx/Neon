@@ -758,7 +758,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel Grid.Column="0" Margin="0,0,0,0">
-                                                <StackPanel Margin="0,0,0,10">
+                                                <StackPanel>
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Collapsed" />
@@ -940,7 +940,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="NewsFeed" Margin="0,0,0,15"
+                                                <StackPanel Name="NewsFeed" Margin="0,0,0,10"
                                                             Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="DetailsViewNewsPanelToggleButton" MinHeight="34"
                                                                   Margin="0,0,0,10" Focusable="False"
@@ -951,7 +951,7 @@
                                                     </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=DetailsViewNewsPanelToggleButton, Path=IsChecked}"
-                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderMainPanels}" />
                                                         <StackPanel Orientation="Vertical" Margin="10">
@@ -960,7 +960,7 @@
                                                     </Grid>
                                                 </StackPanel>
                                                 
-                                                <StackPanel Name="VideoFeed" Margin="0,0,0,15">
+                                                <StackPanel Name="VideoFeed" Margin="0,0,0,10">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
@@ -986,7 +986,7 @@
                                                     </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=DetailsViewVideoPanelToggleButton, Path=IsChecked}"
-                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderMainPanels}" />
                                                         <!--Rectangle used to expand the panel while the video loads-->
@@ -999,7 +999,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="GameActivityFeed" Margin="0,0,0,15">
+                                                <StackPanel Name="GameActivityFeed" Margin="0,0,0,10">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
@@ -1040,7 +1040,7 @@
                                                     </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=DetailsViewGameActivityPanelToggleButton, Path=IsChecked}"
-                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderMainPanels}" />
                                                         <StackPanel Orientation="Vertical" Margin="10">
@@ -1052,7 +1052,7 @@
                                                     </Grid>
                                                 </StackPanel>
                                                 
-                                                <StackPanel Name="CheckDlcPanel" Margin="0,0,0,15">
+                                                <StackPanel Name="CheckDlcPanel" Margin="0,0,0,10">
                                                             <!-- Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"> -->
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
@@ -1088,7 +1088,7 @@
                                                     </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=DetailsViewCheckDlcPanelToggleButton, Path=IsChecked}"
-                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderMainPanels}" />
                                                         <StackPanel Orientation="Vertical" Margin="10">
@@ -1102,7 +1102,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="GameRelationsPanel" Margin="0,0,0,15"
+                                                <StackPanel Name="GameRelationsPanel" Margin="0,0,0,10"
                                                             Visibility="{Binding ElementName=GameRelationsVisibilityProxy, Path=Tag}">
                                                     <ToggleButton x:Name="DetailsViewGameRelationsPanelToggleButton" MinHeight="34"
                                                                   Margin="0,0,0,10" Focusable="False"
@@ -1113,7 +1113,7 @@
                                                     </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=DetailsViewGameRelationsPanelToggleButton, Path=IsChecked}"
-                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderMainPanels}" />
                                                         <StackPanel Orientation="Vertical" Margin="10">
@@ -1174,7 +1174,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="WebExplorerPanel" Margin="0,0,0,15"
+                                                <StackPanel Name="WebExplorerPanel" Margin="0,0,0,10"
                                                             Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
                                                     <ToggleButton x:Name="DetailsViewWebExplorerPanelToggleButton" MinHeight="34"
                                                                   Margin="0,0,0,10" Focusable="False"
@@ -1185,7 +1185,7 @@
                                                     </ToggleButton>
                                                     <Grid Style="{DynamicResource AdditionalPanelContent}"
                                                           Tag="{Binding ElementName=DetailsViewWebExplorerPanelToggleButton, Path=IsChecked}"
-                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10"
+                                                          Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45"
                                                           SnapsToDevicePixels="True" UseLayoutRounding="True">
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderMainPanels}" />
@@ -1198,7 +1198,7 @@
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="2">
-                                                <StackPanel Name="HltbPanel" Margin="0,0,0,15">
+                                                <StackPanel Name="HltbPanel" Margin="0,0,0,10">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Collapsed" />
@@ -1574,7 +1574,7 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="ReviewsPanel" Margin="0,0,0,15"
+                                                <StackPanel Name="ReviewsPanel" Margin="0,0,0,10"
                                                             Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ToggleButton x:Name="DetailsViewReviewsPanelToggleButton" MinHeight="34"
                                                                   Margin="0,0,0,10" Focusable="False"
