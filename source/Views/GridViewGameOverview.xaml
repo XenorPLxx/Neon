@@ -516,11 +516,63 @@
                                                                     <ItemsControl Name="PART_ItemsAgeRatings" />
                                                                 </GridEx>
                                                             </ScrollViewer>-->
+                                                            <ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left"
+                                                                          VerticalScrollBarVisibility="Disabled"
+                                                                          HorizontalScrollBarVisibility="Disabled">
+                                                                <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="6">
+                                                                    <Label Name="PART_ElemRecentActivity" Content="{DynamicResource LOCRecentActivityLabel}" />
+                                                                    <TextBlock Name="PART_TextRecentActivity" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
+                                                                    <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}" />
+                                                                    <Button Name="PART_ButtonReleaseDate" />
+                                                                    <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
+                                                                    <Button Name="PART_ButtonLibrary" />
+                                                                    <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
+                                                                    <ItemsControl Name="PART_ItemsPlatforms" />
+                                                                    <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsDevelopers" MaxWidth="220" />
+                                                                    <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsPublishers" MaxWidth="220" />
+                                                                </GridEx>
+                                                            </ScrollViewer>
                                                         </DockPanel>
 
                                                     </DockPanel>
                                                 </Border>
                                                 <Border Style="{DynamicResource OutlineBorder}" Margin="20,0,30,0" Padding="15,10,15,10"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Margin="20,10,30,10" Background="{DynamicResource LinksContainerBackgroundBrush}">
+                                                <Grid.Style>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Settings DetailsVisibility.Links}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Game.Links}" Value="{x:Null}">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Game.Links.Count, TargetNullValue=0}" Value="0">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Grid.Style>
+                                                <Border Style="{DynamicResource OutlineBorder}" />
+                                                <ItemsControl ItemsSource="{Binding Game.Links}" Margin="0,5,0,5">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Button Content="{Binding Name}" Style="{StaticResource PropertyItemLinksPanelButton}"
+                                                                    ToolTip="{Binding Url}" ToolTipService.InitialShowDelay="500"
+                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.OpenLinkCommand}"
+                                                                    CommandParameter="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
                                             </Grid>
                                         </Grid>
 
@@ -690,8 +742,25 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <DockPanel LastChildFill="False">
+                                                        <ToggleButton x:Name="HltbPanelToggleButton" DockPanel.Dock="Right"
+                                                                      Width="26" Height="26" Margin="0,-4,0,0"
+                                                                      Focusable="False"
+                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
+                                                                      IsChecked="{DynamicResource GridViewShowHltbPanelDefault}" />
+                                                        <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    </DockPanel>
                                                     <Grid>
+                                                        <Grid.Style>
+                                                            <Style TargetType="Grid">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=HltbPanelToggleButton, Path=IsChecked}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Grid.Style>
                                                         <Border Background="{DynamicResource SectionContainerBackgroundBrush}" />
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <Border Padding="10" >

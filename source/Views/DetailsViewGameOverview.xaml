@@ -1160,8 +1160,25 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    <DockPanel LastChildFill="False">
+                                                        <ToggleButton x:Name="HltbPanelToggleButton" DockPanel.Dock="Right"
+                                                                      Width="26" Height="26" Margin="0,-4,0,0"
+                                                                      Focusable="False"
+                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
+                                                                      IsChecked="{DynamicResource DetailsViewShowHltbPanelDefault}" />
+                                                        <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}"/>
+                                                    </DockPanel>
                                                     <Grid>
+                                                        <Grid.Style>
+                                                            <Style TargetType="Grid">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=HltbPanelToggleButton, Path=IsChecked}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Grid.Style>
                                                         <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
                                                         <Border Style="{DynamicResource OutlineBorderSidePanels}" />
                                                         <Border Padding="10">
