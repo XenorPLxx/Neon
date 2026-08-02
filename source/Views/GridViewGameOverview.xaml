@@ -15,12 +15,17 @@
                                   d:DesignHeight="1280"
                                   d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
                         <Grid Margin="0,0,0,40">
-                            <Button HorizontalAlignment="Right" VerticalAlignment="Top"
-                                    Content="r" FontFamily="Marlett" FontSize="40"
-                                    Style="{DynamicResource SimpleButton}"
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Padding="0"
+                                    Style="{DynamicResource DetailsSemiTransparentButton}"
                                     Command="{MainViewModel CloseGameSideBarCommand}"
-                                    DockPanel.Dock="Top" Margin="0,8,24,5" Height="40" Width="40"
-                                    Panel.ZIndex="1"/>
+                                    DockPanel.Dock="Top" Margin="0,10,22,5" Height="30" Width="30"
+                                    Panel.ZIndex="1">
+                                <Viewbox Width="13" Height="13" Stretch="Uniform">
+                                    <Path Data="M 3,3 L 13,13 M 13,3 L 3,13" StrokeThickness="2.4"
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+                                </Viewbox>
+                            </Button>
                             <StackPanel Name="BackgroundBlurPanel">
                                 <Border Height="{Binding ElementName=HeaderImagesGrid, Path=ActualHeight}" />
                                 <Border Name="FastBlurGrid" Opacity="0.25" VerticalAlignment="Top">
@@ -165,11 +170,33 @@
                                             <ContentControl x:Name="CheckLocalizations_PluginButton" Height="40" VerticalAlignment="Bottom" Margin="0,0,0,0" DockPanel.Dock="Left" Opacity="0.60" />
                                             <ContentControl x:Name="LibraryManagement_PluginFeaturesIconList" Height="30" Margin="20,0,0,0"
                                                 VerticalAlignment="Bottom" DockPanel.Dock="Right" Opacity="0.7"/>
+                                            <ContentControl x:Name="GogSecondClassWatcher_SecondClassWatcherControl"
+                                                            DockPanel.Dock="Right"
+                                                            VerticalAlignment="Bottom"
+                                                            Visibility="{PluginSettings Plugin=GogSecondClassWatcher, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            Margin="0,0,10,0"/>
                                         </DockPanel>
                                         <DockPanel DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20,0,30,8" >
+                                            <ContentControl x:Name="PlayState_GameStateSwitchControl" Margin="0,0,10,0"
+                                                            Visibility="{PluginSettings Plugin=PlayState, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <ContentControl.Resources>
+                                                    <Style TargetType="Button" BasedOn="{StaticResource DetailsSemiTransparentButton}">
+                                                        <Setter Property="Width" Value="32" />
+                                                        <Setter Property="Height" Value="32" />
+                                                    </Style>
+                                                </ContentControl.Resources>
+                                            </ContentControl>
+                                            <ContentControl x:Name="DuplicateHider_SourceSelector2"
+                                                            Height="32"
+                                                            Margin="0,0,10,0"
+                                                            VerticalAlignment="Bottom"
+                                                            RenderOptions.BitmapScalingMode="Fant" />
                                             <Button x:Name="PART_ButtonEditGame" Focusable="False" Height="32" Width="32"
-                                                            FontFamily="{DynamicResource FontIcoFont}" Style="{DynamicResource GameEditButton}" Margin="0,0,10,0"/>
+                                                            Style="{DynamicResource DetailsViewEditButton}" Margin="0,0,10,0"/>
                                             <ToggleButton Name="PanelToggleButton" Focusable="False" Height="32" Width="32" Style="{DynamicResource PannelToggleButton}" IsChecked="False"/>
+                                            <ToggleButton Name="GameFavoriteToggleButton" Margin="10,0,0,0" Focusable="False" Height="32" Width="32" Style="{DynamicResource PannelFavoriteToggleButton}"
+                                                          Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin}"
+                                                          IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Favorite, Mode=TwoWay, FallbackValue={StaticResource False}}"/>
                                         </DockPanel>
                                     </Grid>
                                     <Grid Name="DetailsHeader">
@@ -297,7 +324,7 @@
                                                         <Style TargetType="{x:Type DockPanel}">
                                                             <Setter Property="Visibility" Value="Collapsed" />
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue=False}" Value="True">
+                                                                <DataTrigger Binding="{PluginSettings Plugin=PlayniteAchievements, Path=HasAchievements, FallbackValue=False}" Value="True">
                                                                     <Setter Property="Visibility" Value="Visible" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -309,7 +336,7 @@
                                                             <Style TargetType="{x:Type Viewbox}">
                                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{PluginSettings Plugin=SuccessStory, Path=Is100Percent, FallbackValue=False}" Value="True">
+                                                                    <DataTrigger Binding="{PluginSettings Plugin=PlayniteAchievements, Path=IsCompleted, FallbackValue=False}" Value="True">
                                                                         <Setter Property="Visibility" Value="Visible" />
                                                                     </DataTrigger>
                                                                 </Style.Triggers>
@@ -336,7 +363,7 @@
                                                             <Style TargetType="{x:Type Viewbox}">
                                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{PluginSettings Plugin=SuccessStory, Path=Is100Percent, FallbackValue={x:Null}}" Value="False">
+                                                                    <DataTrigger Binding="{PluginSettings Plugin=PlayniteAchievements, Path=IsCompleted, FallbackValue={x:Null}}" Value="False">
                                                                         <Setter Property="Visibility" Value="Visible" />
                                                                     </DataTrigger>
                                                                 </Style.Triggers>
@@ -360,15 +387,15 @@
 
 
                                                     <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                                                        <Label Content="{DynamicResource LOCSuccessStoryAchievements}" Style="{DynamicResource HeaderLabel}"/>
+                                                        <Label Content="{DynamicResource LOCCommonLinksAchievements}" Style="{DynamicResource HeaderLabel}"/>
                                                         <DockPanel>
                                                             <DockPanel MinWidth="40">
-                                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue='-'}" Style="{DynamicResource HeaderTextBlock}" />
+                                                                <TextBlock Text="{PluginSettings Plugin=PlayniteAchievements, Path=UnlockedCount, FallbackValue='-'}" Style="{DynamicResource HeaderTextBlock}" />
                                                                 <TextBlock Text="/" Style="{DynamicResource HeaderTextBlock}" />
-                                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue='-'}" Style="{DynamicResource HeaderTextBlock}"/>
+                                                                <TextBlock Text="{PluginSettings Plugin=PlayniteAchievements, Path=AchievementCount, FallbackValue='-'}" Style="{DynamicResource HeaderTextBlock}"/>
                                                             </DockPanel>
                                                             <ProgressBar x:Name="progressBar" FontSize="10" Margin="5,0,0,0"
-                                                                         Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue=0}" Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue=0}" HorizontalAlignment="Left"
+                                                                         Maximum="{PluginSettings Plugin=PlayniteAchievements, Path=AchievementCount, FallbackValue=0}" Value="{PluginSettings Plugin=PlayniteAchievements, Path=UnlockedCount, FallbackValue=0}" HorizontalAlignment="Left"
                                                                          Background="#151619" Foreground="#2d73ff" Width="75" Height="6" Style="{DynamicResource RoundedProgressBar}">
                                                                 <ProgressBar.Resources>
                                                                     <Style x:Key="RoundedProgressBar" TargetType="ProgressBar">
@@ -448,8 +475,7 @@
                                                                 <Setter Property="VerticalAlignment" Value="Top" />
                                                             </Style>
                                                         </DockPanel.Resources>
-                                                        <Border DockPanel.Dock="Left" Name="ContainerHeightBorder" Height="{Settings GameDetailsCoverHeight}"/>
-                                                        <DockPanel Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}" >                                                               
+                                                        <DockPanel Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}" >
                                                             <StackPanel>
                                                                 <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
                                                                         Style="{DynamicResource BaseTextBlockStyle}" Visibility="Collapsed"/>
@@ -494,30 +520,114 @@
                                                                     <ItemsControl Name="PART_ItemsAgeRatings" />
                                                                 </GridEx>
                                                             </ScrollViewer>-->
+                                                            <ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left"
+                                                                          VerticalScrollBarVisibility="Disabled"
+                                                                          HorizontalScrollBarVisibility="Disabled">
+                                                                <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="6">
+                                                                    <Label Name="PART_ElemRecentActivity" Content="{DynamicResource LOCRecentActivityLabel}" />
+                                                                    <TextBlock Name="PART_TextRecentActivity" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
+                                                                    <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}" />
+                                                                    <Button Name="PART_ButtonReleaseDate" />
+                                                                    <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
+                                                                    <Button Name="PART_ButtonLibrary" />
+                                                                    <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
+                                                                    <ItemsControl Name="PART_ItemsPlatforms" />
+                                                                    <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsDevelopers" MaxWidth="220" />
+                                                                    <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
+                                                                    <ItemsControl Name="PART_ItemsPublishers" MaxWidth="220" />
+                                                                </GridEx>
+                                                            </ScrollViewer>
                                                         </DockPanel>
 
                                                     </DockPanel>
                                                 </Border>
                                                 <Border Style="{DynamicResource OutlineBorder}" Margin="20,0,30,0" Padding="15,10,15,10"/>
                                             </Grid>
+                                            <Grid Grid.Row="1" Margin="20,10,30,10" Background="{DynamicResource LinksContainerBackgroundBrush}">
+                                                <Grid.Style>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Settings DetailsVisibility.Links}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Game.Links}" Value="{x:Null}">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Game.Links.Count, TargetNullValue=0}" Value="0">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Grid.Style>
+                                                <Border Style="{DynamicResource OutlineBorder}" />
+                                                <ItemsControl ItemsSource="{Binding Game.Links}" Margin="0,5,0,5">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Button Content="{Binding Name}" Style="{StaticResource PropertyItemLinksPanelButton}"
+                                                                    ToolTip="{Binding Url}" ToolTipService.InitialShowDelay="500"
+                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.OpenLinkCommand}"
+                                                                    CommandParameter="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </Grid>
                                         </Grid>
 
                                         <Grid Grid.Row="2" Margin="20,0,30,0">
+                                            <Grid.Resources>
+                                                <Style x:Key="GridViewMetadataValueContainer" TargetType="Grid">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=GridViewMetadataToggleButton, Path=IsChecked}" Value="False">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Resources>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="2*" />
                                                 <ColumnDefinition Width="2*" />
                                                 <ColumnDefinition Width="2*" />
                                             </Grid.ColumnDefinitions>
 
-                                            <StackPanel Grid.Column="0" Margin="0,0,0,0">
+                                            <ToggleButton x:Name="GridViewMetadataToggleButton" Grid.Row="0" Grid.ColumnSpan="3"
+                                                          MinHeight="34" Margin="0,0,0,10" Focusable="False"
+                                                          Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                          IsChecked="{DynamicResource GridViewShowMetadataDetailsDefault}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Content="{DynamicResource LOCGamePlatformTitle}"
+                                                           Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    <Label Grid.Column="1" Content="{DynamicResource LOCTagsLabel}"
+                                                           Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    <Label Grid.Column="2" Content="{DynamicResource LOCGameCategoriesTitle}"
+                                                           Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                </Grid>
+                                            </ToggleButton>
+
+                                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,0,0">
                                                 <StackPanel Name="PART_ElemPlatformsGrid">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="{DynamicResource LOCGamePlatformTitle}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                    <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ItemsControl ItemsSource="{Binding Game.Platforms}" Margin="0,3,0,3">
                                                             <ItemsControl.ItemsPanel>
@@ -536,15 +646,14 @@
                                                     </Grid>
                                                 </StackPanel>
                                             </StackPanel>
-                                            <StackPanel Grid.Column="1" Margin="0,0,0,0">
+                                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,0">
                                                 <StackPanel Name="PART_ElemTagsGrid">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="{DynamicResource LOCTagsLabel}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                    <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ItemsControl ItemsSource="{Binding Game.Tags}" Margin="0,3,0,3">
                                                             <ItemsControl.ItemsPanel>
@@ -563,15 +672,14 @@
                                                     </Grid>
                                                 </StackPanel>
                                             </StackPanel>
-                                            <StackPanel Grid.Column="2" Margin="0,0,0,0">                                                
+                                            <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,0,0">
                                                 <StackPanel Name="PART_ElemCategoriesGrid">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                    <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ItemsControl ItemsSource="{Binding Game.Categories}" Margin="0,3,0,3">
                                                             <ItemsControl.ItemsPanel>
@@ -600,18 +708,42 @@
                                             <StackPanel Grid.Column="0" Margin="0,0,0,0">
 
                                                 <StackPanel Grid.Column="0" Margin="0,0,0,0">
-                                                    <StackPanel Name="SuccessStoryPanel" Style="{DynamicResource PluginStackpanelVisibility}"
-                                                        Tag="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue=False}">
-                                                        <Label Content="{DynamicResource LOCSuccessStoryAchievements}" Style="{DynamicResource FeedSectionLabel}"/>
-                                                        <Grid>
+                                                    <StackPanel Name="AchievementsPanel" Style="{DynamicResource PluginStackpanelVisibility}"
+                                                        Tag="{PluginSettings Plugin=PlayniteAchievements, Path=HasAchievements, FallbackValue=False}">
+                                                        <ToggleButton x:Name="GridViewAchievementsPanelToggleButton" MinHeight="34"
+                                                                      Margin="0,0,0,10" Focusable="False"
+                                                                      Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                      IsChecked="{DynamicResource GridViewShowAchievementsPanelDefault}">
+                                                            <Label Content="{DynamicResource LOCCommonLinksAchievements}"
+                                                                   Style="{DynamicResource FeedSectionLabel}" Margin="0"/>
+                                                        </ToggleButton>
+                                                        <Grid Margin="0,0,0,10">
+                                                            <Grid.Style>
+                                                                <Style TargetType="Grid">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding ElementName=GridViewAchievementsPanelToggleButton, Path=IsChecked}" Value="False">
+                                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Grid.Style>
                                                             <Border Background="{DynamicResource SectionContainerBackgroundBrush}" />
                                                             <Border Style="{DynamicResource OutlineBorder}" />
                                                             <Border Padding="10" >
                                                                 <StackPanel>
-                                                                    <ContentControl x:Name="SuccessStory_PluginProgressBar"  Height="20" Margin="0,0,0,10"/>
-                                                                    <ContentControl x:Name="SuccessStory_PluginCompactUnlocked" />
-                                                                    <ContentControl x:Name="SuccessStory_PluginCompactLocked" Margin="0,0,0,10"/>
-                                                                    <ContentControl x:Name="SuccessStory_PluginButton" HorizontalAlignment="Right"/>
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementProgressBar"  Height="20" Margin="0,0,0,10"/>
+                                                                    <TextBlock Text="UNLOCKED" FontSize="{DynamicResource FontSizeSmall}"
+                                                                               FontWeight="SemiBold" Foreground="{DynamicResource DetailsViewContainerLabelBrush}"
+                                                                               Margin="0,0,0,3" />
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementCompactUnlockedList" />
+                                                                    <TextBlock Text="LOCKED" FontSize="{DynamicResource FontSizeSmall}"
+                                                                               FontWeight="SemiBold" Foreground="{DynamicResource DetailsViewContainerLabelBrush}"
+                                                                               Margin="0,6,0,3" />
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementCompactLockedList" Margin="0,0,0,10"/>
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementStats" Margin="0,0,0,10"/>
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementBarChart" Margin="0,0,0,10"/>
+                                                                    <ContentControl x:Name="PlayniteAchievements_AchievementButton" HorizontalAlignment="Right"/>
                                                                 </StackPanel>
                                                             </Border>
                                                         </Grid>
@@ -620,8 +752,16 @@
 
                                                 <StackPanel Name="GameActivityFeed" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=GameActivity, Path=HasData, FallbackValue=False}">
-                                                    <Label Content="{DynamicResource LOCGameActivityTitle}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                    <ToggleButton x:Name="GridViewGameActivityPanelToggleButton" MinHeight="34"
+                                                                  Margin="0,0,0,10" Focusable="False"
+                                                                  Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCGameActivityTitle}"
+                                                               Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewGameActivityPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="Auto" />
                                                         </Grid.RowDefinitions>
@@ -634,7 +774,7 @@
                                                     </Grid>
                                                 </StackPanel>
                                                 
-                                                <StackPanel Name="HltbPanel">
+                                                <StackPanel Name="HltbPanel" Margin="0">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Collapsed" />
@@ -648,8 +788,22 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}"/>
-                                                    <Grid>
+                                                    <ToggleButton x:Name="HltbPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowHltbPanelDefault}">
+                                                        <Label Content="HowLongToBeat" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Grid.Style>
+                                                            <Style TargetType="Grid">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=HltbPanelToggleButton, Path=IsChecked}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Grid.Style>
                                                         <Border Background="{DynamicResource SectionContainerBackgroundBrush}" />
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <Border Padding="10" >
@@ -658,8 +812,9 @@
                                                                                 Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualWidth}"/>
                                                                 <ContentControl x:Name="HowLongToBeat_PluginButton" HorizontalAlignment="Right" Margin="0,0,0,10"/>
 
-                                                                <GridEx Name="HltbDataGrid" ColumnCount="2" AutoLayoutColumns="2" RowCount="6" Tag="{DynamicResource DetailsViewShowHltbDataGrid}">
-                                                                    <GridEx.Style>
+                                                                <ContentControl ContentTemplate="{DynamicResource HltbDataGridTemplate}"
+                                                                                Tag="{DynamicResource GridViewShowHltbDataGrid}">
+                                                                    <ContentControl.Style>
                                                                         <Style>
                                                                             <Setter Property="Control.Visibility" Value="Collapsed" />
                                                                             <Style.Triggers>
@@ -672,62 +827,33 @@
                                                                                 </MultiDataTrigger>
                                                                             </Style.Triggers>
                                                                         </Style>
-                                                                    </GridEx.Style>
-                                                                    <Label Content="{DynamicResource LOCHowLongToBeatMainStory}"
-                                                                           Style="{DynamicResource HltbGridLabelStyle}"
-                                                                           Visibility="{Binding ElementName=MainStoryFormat, Path=Visibility}" />
-                                                                    <TextBlock Name="MainStoryFormat"
-                                                                               Style="{DynamicResource HltbGridTextStyle}"
-                                                                               Text="{PluginSettings Plugin=HowLongToBeat, Path=MainStoryFormat, FallbackValue=--}"/>
-
-                                                                    <Label Content="{DynamicResource LOCHowLongToBeatMainExtra}"
-                                                                           Style="{DynamicResource HltbGridLabelStyle}"
-                                                                           Visibility="{Binding ElementName=MainExtraFormat, Path=Visibility}" />
-                                                                    <TextBlock Name="MainExtraFormat"
-                                                                               Style="{DynamicResource HltbGridTextStyle}"
-                                                                               Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat, FallbackValue=--}"/>
-
-                                                                    <Label Content="{DynamicResource LOCHowLongToBeatCompletionist}"
-                                                                           Style="{DynamicResource HltbGridLabelStyle}"
-                                                                           Visibility="{Binding ElementName=CompletionistFormat, Path=Visibility}" />
-                                                                    <TextBlock Name="CompletionistFormat"
-                                                                               Style="{DynamicResource HltbGridTextStyle}"
-                                                                               Text="{PluginSettings Plugin=HowLongToBeat, Path=CompletionistFormat, FallbackValue=--}"/>
-
-                                                                    <Label Content="{DynamicResource LOCHowLongToBeatSolo}"
-                                                                           Style="{DynamicResource HltbGridLabelStyle}"
-                                                                           Visibility="{Binding ElementName=SoloFormat, Path=Visibility}" />
-                                                                    <TextBlock Name="SoloFormat"
-                                                                               Style="{DynamicResource HltbGridTextStyle}"
-                                                                               Text="{PluginSettings Plugin=HowLongToBeat, Path=SoloFormat, FallbackValue=--}"/>
-
-                                                                    <Label Content="{DynamicResource LOCHowLongToBeatCoOp}"
-                                                                           Style="{DynamicResource HltbGridLabelStyle}"
-                                                                           Visibility="{Binding ElementName=CoOpFormat, Path=Visibility}" />
-                                                                    <TextBlock Name="CoOpFormat"
-                                                                               Style="{DynamicResource HltbGridTextStyle}"
-                                                                               Text="{PluginSettings Plugin=HowLongToBeat, Path=CoOpFormat, FallbackValue=--}"/>
-
-                                                                    <Label Content="{DynamicResource LOCHowLongToBeatVs}"
-                                                                           Style="{DynamicResource HltbGridLabelStyle}"
-                                                                           Visibility="{Binding ElementName=VsFormat, Path=Visibility}" />
-                                                                    <TextBlock Name="VsFormat"
-                                                                               Style="{DynamicResource HltbGridTextStyle}"
-                                                                               Text="{PluginSettings Plugin=HowLongToBeat, Path=VsFormat, FallbackValue=--}"/>
-                                                                </GridEx>
+                                                                    </ContentControl.Style>
+                                                                </ContentControl>
                                                             </StackPanel>
                                                         </Border>
                                                     </Grid>
                                                 </StackPanel>                                                
 
-                                                <StackPanel Name="PART_ElemNotes" Margin="0,0,0,10">
-                                                    <Label Content="{DynamicResource LOCNotesLabel}" Style="{DynamicResource FeedSectionLabel}"/>
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
-                                                        <Border Style="{DynamicResource OutlineBorder}" />
-                                                        <TextBox Name="PART_TextNotes" IsReadOnly="True"
-                                                     BorderThickness="0" Background="Transparent"
-                                                     AcceptsReturn="True" TextWrapping="Wrap"
-                                                     Margin="20,0,20,0" Padding="10" VerticalAlignment="Center"/>
+                                                <StackPanel Name="PART_ElemNotes">
+                                                    <ToggleButton x:Name="GridViewNotesPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCNotesLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewNotesPanelToggleButton, Path=IsChecked}">
+                                                        <StackPanel>
+                                                            <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                                <Border Style="{DynamicResource OutlineBorder}" />
+                                                                <TextBox Name="PART_TextNotes" IsReadOnly="True"
+                                                                     BorderThickness="0" Background="Transparent"
+                                                                     AcceptsReturn="True" TextWrapping="Wrap"
+                                                                     Margin="20,0,20,0" Padding="10" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                            <ContentControl x:Name="PlayNotes_NotesViewerControl"
+                                                                            Visibility="{PluginSettings Plugin=PlayNotes, Path=IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                                                            Margin="0,0,0,10" />
+                                                        </StackPanel>
                                                     </Grid>
                                                 </StackPanel>
 
@@ -799,7 +925,7 @@
                                                     </Grid>
                                                 </StackPanel>-->                                            
 
-                                                <StackPanel Name="VideoFeed" Margin="0,0,0,15">
+                                                <StackPanel Name="VideoFeed" Margin="0">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
                                                             <Setter Property="Visibility" Value="Visible" />
@@ -813,8 +939,14 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="{DynamicResource LOCExtra_Metadata_Loader_VideoLabel}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                    <ToggleButton x:Name="GridViewVideoPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCExtra_Metadata_Loader_VideoLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewVideoPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl" Margin="10"/>
                                                     </Grid>
@@ -822,8 +954,13 @@
                                               
                                                 <StackPanel Name="ScreenshotsVisualizerPanel" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=ScreenshotsVisualizer, Path=HasData, FallbackValue=False}">
-                                                    <Label Content="{DynamicResource LOCSsvTitle}" Style="{DynamicResource FeedSectionLabel}"/>
-                                                    <Grid>
+                                                    <ToggleButton x:Name="GridViewScreenshotsVisualizerPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCSsvTitle}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewScreenshotsVisualizerPanelToggleButton, Path=IsChecked}">
                                                         <Border Background="{DynamicResource SectionContainerBackgroundBrush}" />
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <Border Padding="10" >
@@ -838,13 +975,164 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="ReviewsPanel" Margin="0,0,0,15"
-                                                            Visibility="{PluginStatus Plugin=Review_Viewer_ca24e37a-76d9-49bf-89ab-d3cba4a54bd1, Status=Installed}">
-                                                    <Label Content="{DynamicResource LOCReview_Viewer_ReviewsLabel}" Style="{DynamicResource FeedSectionLabel}"/>
-                                                    <Grid Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                <StackPanel Name="ReviewsPanel" Margin="0"
+                                                            Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <ToggleButton x:Name="GridViewReviewsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCReview_Viewer_ReviewsLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewReviewsPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <Border Padding="10">
                                                             <ContentControl x:Name="ReviewViewer_ReviewsControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="NewsFeed" Margin="0"
+                                                            Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <ToggleButton x:Name="GridViewNewsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewNewsPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="NewsViewer_NewsViewerControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="VndbPanel" Margin="0"
+                                                            Visibility="{PluginSettings Plugin=VNDBNexus, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <ToggleButton x:Name="GridViewVndbPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="VNDB" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewVndbPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="VNDBNexus_VndbVisualNovelViewControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="CheckDlcPanel" Margin="0"
+                                                            Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <ToggleButton x:Name="GridViewCheckDlcPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="DLC" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewCheckDlcPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <StackPanel>
+                                                                <ContentControl x:Name="CheckDlc_PluginButton" MinHeight="20" MinWidth="120"
+                                                                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10"
+                                                                                Visibility="{PluginSettings Plugin=CheckDlc, Path=EnableIntegrationButton, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                                <ContentControl x:Name="CheckDlc_PluginListDlcAll" Height="700" Margin="0,0,0,10"/>
+                                                                <ContentControl x:Name="CheckDlc_PluginListDlcOwned" Height="700" Margin="0,0,0,10"/>
+                                                                <ContentControl x:Name="CheckDlc_PluginListDlcNotOwned" Height="700" />
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="GameRelationsPanel" Margin="0">
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SimilarGamesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SameSeriesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SameDeveloperControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=GameRelations, Path=SamePublisherControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" Value="Visible">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <ToggleButton x:Name="GridViewGameRelationsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCGameRelations_RelatedGamesLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewGameRelationsPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <StackPanel>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SimilarGamesLabel}" IsExpanded="True" Margin="0,0,0,5"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SimilarGamesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SimilarGamesControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SameSeriesLabel}" IsExpanded="True" Margin="0,0,0,5"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SameSeriesControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SameSeriesControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SameDeveloperLabel}" IsExpanded="True" Margin="0,0,0,5"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SameDeveloperControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SameDeveloperControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                                <Expander Header="{DynamicResource LOCGameRelations_SamePublisherLabel}" IsExpanded="True"
+                                                                          Visibility="{PluginSettings Plugin=GameRelations, Path=SamePublisherControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                                                    <ContentControl x:Name="GameRelations_SamePublisherControl" Margin="0,5,0,0" />
+                                                                </Expander>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="SteamScreenshots" Margin="0"
+                                                            Visibility="{PluginSettings Plugin=SteamScreenshots, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <ToggleButton x:Name="GridViewSteamScreenshotsPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOC_SteamScreenshots_SteamScreenshotsLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewSteamScreenshotsPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="SteamScreenshots_SteamScreenshotsViewControl" />
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                <StackPanel Name="WebExplorerPanel" Margin="0"
+                                                            Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
+                                                    <ToggleButton x:Name="GridViewWebExplorerPanelToggleButton" MinHeight="34" Margin="0,0,0,10"
+                                                                  Focusable="False" Style="{DynamicResource DetailsSectionHeaderToggleButton}"
+                                                                  IsChecked="{DynamicResource GridViewShowAdditionalPanelsDefault}">
+                                                        <Label Content="{DynamicResource LOCWebExplorer_WebLabel}" Style="{DynamicResource FeedSectionLabel}" Margin="0" />
+                                                    </ToggleButton>
+                                                    <Grid Style="{DynamicResource AdditionalPanelContent}"
+                                                          Tag="{Binding ElementName=GridViewWebExplorerPanelToggleButton, Path=IsChecked}"
+                                                          Background="{DynamicResource SectionContainerBackgroundBrush}">
+                                                        <Border Style="{DynamicResource OutlineBorder}" />
+                                                        <Border Padding="10">
+                                                            <ContentControl x:Name="WebExplorer_BrowserHostViewControl"
+                                                                            Height="{DynamicResource WebExplorerControlHeight}" />
                                                         </Border>
                                                     </Grid>
                                                 </StackPanel>
@@ -939,7 +1227,7 @@
     <Style TargetType="StackPanel" x:Key="PluginStackpanelVisibility">
         <Setter Property="Tag" Value="False" />
         <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Margin" Value="0,0,0,15" />
+        <Setter Property="Margin" Value="0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
                 <Setter Property="Visibility" Value="Visible" />

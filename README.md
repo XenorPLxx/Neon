@@ -3,9 +3,22 @@
 ![DownloadCountLatest](https://img.shields.io/github/downloads/XenorPLxx/Neon/latest/total?style=for-the-badge)
 ![License](https://img.shields.io/github/license/XenorPLxx/Neon?style=for-the-badge)
 
-# Neon 
+# Neon
 
-Neon (formerly 'Helium - Enhanced Grid Mod') is a project based on [Helium by darklinkpower](https://github.com/darklinkpower/Helium) for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode.
+Neon (formerly *Helium - Enhanced Grid Mod*) is a grid-focused [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode theme based on [Helium by darklinkpower](https://github.com/darklinkpower/Helium).
+
+## Installation
+
+Download the latest `.pthm` file from the [Releases page](https://github.com/XenorPLxx/Neon/releases/latest), then open it or drag it onto the Playnite Desktop window to install it.
+
+## Optional integrations
+
+Neon works without extensions. It includes integration hosts for the following optional extensions:
+
+- **Achievements and duplicate management:** [PlayniteAchievements](https://github.com/justin-delano/PlayniteAchievements) native achievement progress, statistics, and charts; and [DuplicateHider](https://github.com/felixkmh/DuplicateHider) source selectors on grid covers and in the selected-game overview.
+- **Game data and media:** [HowLongToBeat](https://github.com/Lacro59/playnite-howlongtobeat-plugin), [GameActivity](https://github.com/Lacro59/playnite-gameactivity-plugin), Extra Metadata Loader, Background Changer, Screenshots Visualizer, Steam Screenshots, Play Notes, and Steam Game Status Detector.
+- **Library and game information:** CheckDLC, CheckLocalizations, SystemChecker, LibraryManagement, Game Relations, Review Viewer, News Viewer, VNDB Nexus, GOG Second Class Watcher, and Web Explorer.
+- **Interface additions:** PlayState and ThemeExtras.
 
 ## Relevant settings
 
@@ -24,44 +37,3 @@ Settings used to take the preview screenshots:
 ## Screenshots
 
 ![Screenshot](https://github.com/XenorPLxx/Neon/raw/master/screenshots/screenshot_01.jpg)
-
-<!-- # Helium
-
-Theme inspired by Steam for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode.
-
-Playnite forum thread: https://playnite.link/forum/thread-811.html
-
-## Theme goals
-
-- Use the Steam client as inspiration to create a polished Playnite UI.
-- Achieve a more modern and clean design with the chosen pallete and things like rounded corners in certain elements like the windows, borders, buttons and controls.
-- Improve the user experience with small animations in certain parts.
-- Change the aesthetic without affecting functionality.
-- Polish certain parts of the UI to give a better user experience.
-- Different aesthetic of other available themes available by default in Playnite and created by the community.
-- Achieve features that are not available by default on Playnite via community extensions
-
-## Installation
-
-1. Download the latest packaged `pthm` theme file from the [Releases page.](https://github.com/darklinkpower/Helium/releases/latest)
-2. Open it to automatically install on Playnite or drag and drop it to the main Playnite window to start installation.
-
-## Functionalities and features
-
-- Full support for features available in the default Playnite Desktop themes
-- Customization: Customization of certain aspects of the theme can be done via custom integration of the [ThemeModifier](https://github.com/Lacro59/playnite-thememodifier-plugin) extension.
-- Achievements: via custom integration of the [SuccessStory](https://github.com/Lacro59/playnite-successstory-plugin) extension.
-- HowLongToBeat data: via custom integration of the [HowLongToBeat](https://github.com/Lacro59/playnite-howlongtobeat-plugin) extension.
-- Game statistics: via custom integration of the [GameActivity](https://github.com/Lacro59/playnite-gameactivity-plugin) extension.
-- Screenshots: via custom integration of the [ScreenshotsVisualizer](https://github.com/Lacro59/playnite-screenshotsvisualizer-plugin) extension.
-- Duplicate copies handling: via custom integration of the [DuplicateHider](https://github.com/felixkmh/DuplicateHider) extension.
-- Logos: download of logos for use in the theme via [Extra Metadata Tools](https://playnite.link/forum/thread-575.html) extension.
-- Videos: download of trailer and microtrailer videos for use in the theme via [Extra Metadata Tools Video](https://playnite.link/forum/thread-575.html) extension.
-
-## Screenshots
-
-![Screenshot](https://raw.githubusercontent.com/darklinkpower/Helium/master/screenshots/screenshot_01.jpg)
-
-![Screenshot](https://raw.githubusercontent.com/darklinkpower/Helium/master/screenshots/screenshot_02.jpg)
-
-![Screenshot](https://raw.githubusercontent.com/darklinkpower/Helium/master/screenshots/screenshot_03.jpg) -->

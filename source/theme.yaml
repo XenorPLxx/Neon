@@ -1,10 +1,10 @@
-ThemeApiVersion: 2.1.0
+ThemeApiVersion: 2.9.0
 Id: 8b15c46a-90c2-4fe5-9ebb-1ab25ba7fcb2
 Name: Neon
 Author: Xenor
-Version: 2.0
+Version: 3.0
 Links:
   - Name: GitHub
     Url: https://github.com/XenorPLxx/Neon
-  - Name: Orignal darklinkpower's Helium
+  - Name: Original Helium
     Url: https://github.com/darklinkpower/Helium
