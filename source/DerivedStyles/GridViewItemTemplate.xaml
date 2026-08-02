@@ -471,6 +471,10 @@
         </Setter>
     </Style>
 
+    <Style x:Key="DuplicateHider_IconContentControlStyle2"
+           BasedOn="{StaticResource DuplicateHider_IconContentControlStyle1}"
+           TargetType="ContentControl" />
+
     <Style TargetType="Button" x:Key="ButtonPlay" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="Transparent" />

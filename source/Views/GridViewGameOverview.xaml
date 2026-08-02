@@ -181,6 +181,11 @@
                                                     </Style>
                                                 </ContentControl.Resources>
                                             </ContentControl>
+                                            <ContentControl x:Name="DuplicateHider_SourceSelector2"
+                                                            MaxHeight="25"
+                                                            Margin="0,0,10,0"
+                                                            VerticalAlignment="Bottom"
+                                                            RenderOptions.BitmapScalingMode="Fant" />
                                             <Button x:Name="PART_ButtonEditGame" Focusable="False" Height="32" Width="32"
                                                             Style="{DynamicResource DetailsViewEditButton}" Margin="0,0,10,0"/>
                                             <ToggleButton Name="PanelToggleButton" Focusable="False" Height="32" Width="32" Style="{DynamicResource PannelToggleButton}" IsChecked="False"/>
