@@ -16,10 +16,10 @@
                                   d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
                         <Grid Margin="0,0,0,40">
                             <Button HorizontalAlignment="Right" VerticalAlignment="Top"
-                                    Content="r" FontFamily="Marlett" FontSize="40"
-                                    Style="{DynamicResource SimpleButton}"
+                                    Content="r" FontFamily="Marlett" FontSize="28"
+                                    Style="{DynamicResource DetailsSemiTransparentButton}"
                                     Command="{MainViewModel CloseGameSideBarCommand}"
-                                    DockPanel.Dock="Top" Margin="0,8,24,5" Height="40" Width="40"
+                                    DockPanel.Dock="Top" Margin="0,8,24,5" Height="32" Width="32"
                                     Panel.ZIndex="1"/>
                             <StackPanel Name="BackgroundBlurPanel">
                                 <Border Height="{Binding ElementName=HeaderImagesGrid, Path=ActualHeight}" />
