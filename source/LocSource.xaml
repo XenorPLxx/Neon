@@ -909,6 +909,7 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Enter full folder path.</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
+    <sys:String x:Key="LOCAchievementsProgress">Progress</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">News</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Store Page</sys:String>

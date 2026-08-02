@@ -15,12 +15,12 @@ Download the latest `.pthm` file from the [Releases page](https://github.com/Xen
 
 Neon works without extensions. It includes integration hosts for the following optional extensions:
 
-- **Achievements and duplicate management:** [PlayniteAchievements](https://github.com/justin-delano/PlayniteAchievements) achievement progress, statistics, and charts; and [DuplicateHider](https://github.com/felixkmh/DuplicateHider) source selectors on grid covers and in the selected-game overview.
+- **Achievements and duplicate management:** [PlayniteAchievements](https://github.com/justin-delano/PlayniteAchievements) native achievement progress, statistics, and charts; and [DuplicateHider](https://github.com/felixkmh/DuplicateHider) source selectors on grid covers and in the selected-game overview.
 - **Game data and media:** [HowLongToBeat](https://github.com/Lacro59/playnite-howlongtobeat-plugin), [GameActivity](https://github.com/Lacro59/playnite-gameactivity-plugin), Extra Metadata Loader, Background Changer, Screenshots Visualizer, Steam Screenshots, Play Notes, and Steam Game Status Detector.
 - **Library and game information:** CheckDLC, CheckLocalizations, SystemChecker, LibraryManagement, Game Relations, Review Viewer, News Viewer, VNDB Nexus, GOG Second Class Watcher, and Web Explorer.
 - **Interface additions:** PlayState and ThemeExtras.
 
-To use PlayniteAchievements, run its built-in **Limited Theme Migration** once. It converts Neon's SuccessStory-compatible bindings to PlayniteAchievements while retaining the existing layout. Other controls appear only when their extension is installed and enabled, and, where applicable, the selected game has data.
+PlayniteAchievements is integrated natively; no theme migration is required. Other controls appear only when their extension is installed and enabled, and, where applicable, the selected game has data.
 
 ## Relevant settings
 

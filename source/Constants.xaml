@@ -32,7 +32,7 @@
     <sys:Int32 x:Key="GridViewSectionOrderNotes">2</sys:Int32>
     <sys:Int32 x:Key="GridViewSectionOrderDescription">3</sys:Int32>
     <sys:Int32 x:Key="GridViewSectionOrderVndb">4</sys:Int32>
-    <sys:Int32 x:Key="GridViewSectionOrderSuccessStory">5</sys:Int32>
+    <sys:Int32 x:Key="GridViewSectionOrderAchievements">5</sys:Int32>
     <sys:Int32 x:Key="GridViewSectionOrderHowLongToBeat">6</sys:Int32>
     <sys:Int32 x:Key="GridViewSectionOrderScreenshotsVisualizer">7</sys:Int32>
     <sys:Int32 x:Key="GridViewSectionOrderGameActivity">8</sys:Int32>

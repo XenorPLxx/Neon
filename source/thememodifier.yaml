@@ -36,7 +36,7 @@ Constants:
     - GridViewSectionOrderNotes(0,18): 'Game Notes'
     - GridViewSectionOrderDescription(0,18): 'Game Description'
     - GridViewSectionOrderVndb(0,18): 'VNDB Nexus extension'
-    - GridViewSectionOrderSuccessStory(0,18): 'SuccessStory extension'
+    - GridViewSectionOrderAchievements(0,18): 'PlayniteAchievements extension'
     - GridViewSectionOrderHowLongToBeat(0,18): 'HowLongToBeat extension'
     - GridViewSectionOrderScreenshotsVisualizer(0,18): 'ScreenshotsVisualizer extension'
     - GridViewSectionOrderGameActivity(0,18): 'GameActivity extension'
