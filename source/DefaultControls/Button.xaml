@@ -495,10 +495,6 @@
 
     <Style x:Key="DetailsSectionLabelToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="#d3d8e0" />
-        <Setter Property="Foreground" Value="#94a1a6" />
-        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarger}" />
-        <Setter Property="FontFamily" Value="Corbel" />
-        <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
         <Setter Property="Margin" Value="0,0,0,10" />
         <Setter Property="MinHeight" Value="34" />
         <Setter Property="Padding" Value="0" />
@@ -510,9 +506,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="Background" Background="{TemplateBinding Background}" Opacity="0">
-                        <ContentPresenter Content="{TemplateBinding Content}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Label Content="{TemplateBinding Content}" Style="{DynamicResource FeedSectionLabel}" Margin="0"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

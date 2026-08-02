@@ -773,7 +773,7 @@
                                                         </Style>
                                                     </StackPanel.Style>
                                                     
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewNotesPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -945,7 +945,7 @@
 
                                                 <StackPanel Name="NewsFeed" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewNewsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -983,7 +983,7 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewVideoPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1040,7 +1040,7 @@
                                                         </Style>
                                                     </StackPanel.Style>
 
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewGameActivityPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1092,7 +1092,7 @@
                                                             <Setter Property="BorderThickness" Value="0" />
                                                         </Style>
                                                     </StackPanel.Resources>
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewCheckDlcPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1119,7 +1119,7 @@
 
                                                 <StackPanel Name="GameRelationsPanel" Margin="0,0,0,15"
                                                             Visibility="{Binding ElementName=GameRelationsVisibilityProxy, Path=Tag}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewGameRelationsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1194,7 +1194,7 @@
 
                                                 <StackPanel Name="WebExplorerPanel" Margin="0,0,0,15"
                                                             Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewWebExplorerPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1236,7 +1236,7 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="HltbPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1357,7 +1357,7 @@
 
                                                 <StackPanel Name="AchievementsPanel" Style="{DynamicResource PluginStackpanelVisibility}" ClipToBounds="False"
                                                             Visibility="{PluginSettings Plugin=PlayniteAchievements, Path=HasAchievements, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="AchievementsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1537,7 +1537,7 @@
 
                                                 <StackPanel Name="SteamScreenshots" Style="{DynamicResource PluginStackpanelVisibility}"
                                                             Visibility="{PluginSettings Plugin=SteamScreenshots, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewSteamScreenshotsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1561,7 +1561,7 @@
                                                 
                                                 <StackPanel Name="VNDBPanel" Style="{DynamicResource PluginStackpanelVisibility}"
                                                             Visibility="{PluginSettings Plugin=VNDBNexus, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewVndbPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1584,7 +1584,7 @@
                                                 
                                                 <StackPanel Name="ScreenshotsVisualizerPanel" Style="{DynamicResource PluginStackpanelVisibility}"
                                                             Visibility="{PluginSettings Plugin=ScreenshotsVisualizer, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewScreenshotsVisualizerPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1612,7 +1612,7 @@
 
                                                 <StackPanel Name="ReviewsPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="DetailsViewReviewsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"

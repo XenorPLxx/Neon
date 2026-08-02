@@ -752,7 +752,7 @@
 
                                                 <StackPanel Name="GameActivityFeed" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=GameActivity, Path=HasData, FallbackValue=False}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewGameActivityPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -791,7 +791,7 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="HltbPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -842,7 +842,7 @@
                                                 </StackPanel>                                                
 
                                                 <StackPanel Name="PART_ElemNotes" Margin="0,0,0,10">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewNotesPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -951,7 +951,7 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewVideoPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -971,7 +971,7 @@
                                               
                                                 <StackPanel Name="ScreenshotsVisualizerPanel" Style="{DynamicResource PluginStackpanelVisibility}"
                                                         Tag="{PluginSettings Plugin=ScreenshotsVisualizer, Path=HasData, FallbackValue=False}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewScreenshotsVisualizerPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -999,7 +999,7 @@
 
                                                 <StackPanel Name="ReviewsPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewReviewsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1021,7 +1021,7 @@
 
                                                 <StackPanel Name="NewsFeed" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewNewsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1043,7 +1043,7 @@
 
                                                 <StackPanel Name="VndbPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=VNDBNexus, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewVndbPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1064,7 +1064,7 @@
 
                                                 <StackPanel Name="CheckDlcPanel" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewCheckDlcPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1110,7 +1110,7 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewGameRelationsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1149,7 +1149,7 @@
 
                                                 <StackPanel Name="SteamScreenshots" Margin="0,0,0,15"
                                                             Visibility="{PluginSettings Plugin=SteamScreenshots, Path=IsControlVisible, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewSteamScreenshotsPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
@@ -1171,7 +1171,7 @@
 
                                                 <StackPanel Name="WebExplorerPanel" Margin="0,0,0,15"
                                                             Visibility="{Binding ElementName=WebExplorer_BrowserHostViewControl, Path=Content.IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}">
-                                                    <DockPanel LastChildFill="False">
+                                                    <DockPanel LastChildFill="True">
                                                         <ToggleButton x:Name="GridViewWebExplorerPanelToggleButton" DockPanel.Dock="Right"
                                                                       Width="26" Height="26" Margin="0,-4,0,0"
                                                                       Focusable="False"
