@@ -6,6 +6,9 @@ Packages:
     PackageUrl: https://github.com/XenorPLxx/Neon/releases/download/3.0/8b15c46a-90c2-4fe5-9ebb-1ab25ba7fcb2_3_0.pthm
     Changelog:
       - "Updated Neon for current Playnite releases"
+      - "Added configurable library and platform banners, cover effects, and improved game cover layout"
+      - "Expanded Grid and Details views with game scores, current player counts, and more optional game information"
+      - "Added support for more optional extension panels, including game relations, screenshots, VNDB, Web Explorer, and game activity"
       - "Added native PlayniteAchievements support in Grid and Details views"
       - "Improved DuplicateHider source selectors and library icons"
       - "Made game information and optional extension panels easier to collapse and expand"
