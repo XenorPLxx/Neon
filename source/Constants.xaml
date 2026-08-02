@@ -83,6 +83,11 @@
                   TopRight="{StaticResource ControlCornerRadiusValue}"
                   BottomRight="{StaticResource ControlCornerRadiusValue}"
                   BottomLeft="{StaticResource ControlCornerRadiusValue}"/>
+    <CornerRadius x:Key="PopupCornerRadius"
+                  TopLeft="{StaticResource ControlCornerRadiusValue}"
+                  TopRight="{StaticResource ControlCornerRadiusValue}"
+                  BottomRight="{StaticResource ControlCornerRadiusValue}"
+                  BottomLeft="{StaticResource ControlCornerRadiusValue}"/>
     <CornerRadius x:Key="SliderFillCornerRadius"
                   TopLeft="{StaticResource ControlCornerRadiusValue}" 
                   TopRight="0"
