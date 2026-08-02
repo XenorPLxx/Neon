@@ -9,6 +9,7 @@
     <sys:Boolean x:Key="DetailsViewShowInfoPanelDefault">true</sys:Boolean>
     <sys:Boolean x:Key="DetailsViewShowAchievementsPanelDefault">false</sys:Boolean>
     <sys:Boolean x:Key="DetailsViewShowHltbPanelDefault">false</sys:Boolean>
+    <sys:Boolean x:Key="DetailsViewShowAdditionalPanelsDefault">false</sys:Boolean>
     <VerticalAlignment x:Key="DetailsViewBackgroundVerticalAlignment">Center</VerticalAlignment>
     <HorizontalAlignment x:Key="DetailsViewBackgroundHorizontalAlignment">Left</HorizontalAlignment>
     <sys:Boolean x:Key="DetailsViewAllowUseOfLogos">true</sys:Boolean>
@@ -19,6 +20,7 @@
     <sys:Boolean x:Key="GridViewShowHltbDataGrid">true</sys:Boolean>
     <sys:Boolean x:Key="GridViewShowMetadataDetailsDefault">false</sys:Boolean>
     <sys:Boolean x:Key="GridViewShowHltbPanelDefault">false</sys:Boolean>
+    <sys:Boolean x:Key="GridViewShowAdditionalPanelsDefault">false</sys:Boolean>
     <sys:Boolean x:Key="GridViewEnableCoverShineAnimation">true</sys:Boolean>
     <sys:Boolean x:Key="DetailsViewLibraryGameShowFavorite">true</sys:Boolean>
     <sys:Boolean x:Key="GridViewLibraryGameShowFavorite">true</sys:Boolean>
@@ -51,6 +53,15 @@
     <sys:Boolean x:Key="ShowNavigationButtons">True</sys:Boolean>
     <sys:Double x:Key="TopPanelSearchBoxWidthHelium">500</sys:Double>
     <!--region end-->
+
+    <Style x:Key="AdditionalPanelContent" TargetType="Grid">
+        <Setter Property="Visibility" Value="Visible" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="False">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     
     <x:Static x:Key="EmptyString" Member="sys:String.Empty" />
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
