@@ -525,6 +525,17 @@
                                         </Grid>
 
                                         <Grid Grid.Row="2" Margin="20,0,30,0">
+                                            <Grid.Resources>
+                                                <Style x:Key="GridViewMetadataValueContainer" TargetType="Grid">
+                                                    <Setter Property="MaxHeight" Value="45" />
+                                                    <Setter Property="ClipToBounds" Value="True" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=GridViewMetadataToggleButton, Path=IsChecked}" Value="True">
+                                                            <Setter Property="MaxHeight" Value="10000" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Resources>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="2*" />
                                                 <ColumnDefinition Width="2*" />
@@ -539,7 +550,7 @@
                                                         </Style>
                                                     </StackPanel.Style>
                                                     <Label Content="{DynamicResource LOCGamePlatformTitle}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                    <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ItemsControl ItemsSource="{Binding Game.Platforms}" Margin="0,3,0,3">
                                                             <ItemsControl.ItemsPanel>
@@ -566,7 +577,7 @@
                                                         </Style>
                                                     </StackPanel.Style>
                                                     <Label Content="{DynamicResource LOCTagsLabel}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                    <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ItemsControl ItemsSource="{Binding Game.Tags}" Margin="0,3,0,3">
                                                             <ItemsControl.ItemsPanel>
@@ -592,8 +603,15 @@
                                                             <Setter Property="Visibility" Value="Visible" />
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
+                                                    <DockPanel LastChildFill="False">
+                                                        <ToggleButton x:Name="GridViewMetadataToggleButton" DockPanel.Dock="Right"
+                                                                      Width="26" Height="26" Margin="0,-4,0,0"
+                                                                      Focusable="False"
+                                                                      Style="{DynamicResource DetailsSectionChevronToggleButton}"
+                                                                      IsChecked="{DynamicResource GridViewShowMetadataDetailsDefault}" />
+                                                        <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{DynamicResource FeedSectionLabel}" />
+                                                    </DockPanel>
+                                                    <Grid Style="{StaticResource GridViewMetadataValueContainer}" Margin="0,0,0,10" Background="{DynamicResource  LinksContainerBackgroundBrush}" MinHeight="45">
                                                         <Border Style="{DynamicResource OutlineBorder}" />
                                                         <ItemsControl ItemsSource="{Binding Game.Categories}" Margin="0,3,0,3">
                                                             <ItemsControl.ItemsPanel>

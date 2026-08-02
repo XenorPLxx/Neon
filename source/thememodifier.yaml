@@ -21,6 +21,7 @@ Constants:
     - GridViewAllowUseOfLogos: 'Allow use of logos (Requires Extra Metadata Loader extension)'
     - GridViewDisplayGameNameIfLogoVisible: 'Display game name if logo is visible'
     - GridViewShowHltbDataGrid: 'Show HowLongToBeat data grid (Requires HowLongToBeat extension)'
+    - GridViewShowMetadataDetailsDefault: 'Expand platform, tag and category values by default'
     - "Grid View Covers"
     - GridViewCoverZoomOnHover: 'Zoom when hovered'
     - GridViewCoverSubtitleVisibility: 'Visibility of time played under game covers'
